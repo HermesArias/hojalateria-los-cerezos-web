@@ -198,7 +198,7 @@
   <!-- Estilos técnicos personalizados de Blueprint -->
   <link rel="stylesheet" href="assets/css/technical.css">
 </head>
-<body class="bg-blueprint-grid text-graphite font-body antialiased selection:bg-graphite selection:text-white pb-20 md:pb-0">
+<body class="bg-blueprint-grid text-graphite font-body antialiased selection:bg-graphite selection:text-white pb-24 md:pb-0">
 
   <!-- =========================================================================
        BARRA TÉCNICA SUPERIOR (METRIC & WORKSHOP STATUS HEADER)
@@ -250,10 +250,10 @@
     <div class="cad-cross-tl"></div>
     <div class="cad-cross-tr"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-16">
       
-      <!-- Ficha de Registro Superior del Plano -->
-      <div class="flex flex-wrap items-center justify-between text-xs font-mono border-b border-dashed border-graphite/25 pb-3 mb-8 gap-3">
+      <!-- Ficha de Registro Superior del Plano (Visible sólo en desktop para no retrasar el contenido en celulares) -->
+      <div class="hidden md:flex flex-wrap items-center justify-between text-xs font-mono border-b border-dashed border-graphite/25 pb-3 mb-8 gap-3">
         <div class="flex items-center space-x-2 text-graphite-light">
           <span class="font-bold text-graphite">DOC. REF:</span>
           <span>PLAN-CORT-2026-09</span>
@@ -266,37 +266,47 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
         
         <!-- COLUMNA IZQUIERDA: MENSAJE CONTUNDENTE Y REGLAS DE NEGOCIO -->
-        <div class="lg:col-span-7 space-y-6">
+        <div class="lg:col-span-7 space-y-4 sm:space-y-6">
           
-          <div class="inline-flex items-center space-x-2 bg-white px-3 py-1 border border-graphite text-xs font-mono font-bold tracking-wider uppercase">
+          <div class="inline-flex items-center space-x-2 bg-white px-2.5 py-1 border border-graphite text-[11px] sm:text-xs font-mono font-bold tracking-wider uppercase">
             <span class="w-2 h-2 bg-graphite inline-block"></span>
             <span>TALLER DE HOJALATERÍA EN EL QUISCO</span>
           </div>
 
           <!-- TÍTULO MONUMENTAL TÉCNICO -->
-          <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[4.6rem] xl:text-[5.2rem] leading-[0.88] font-condensed font-black uppercase tracking-tight text-graphite">
+          <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-[4.6rem] xl:text-[5.2rem] leading-[0.92] sm:leading-[0.88] font-condensed font-black uppercase tracking-tight text-graphite">
             Hojalatería y Fabricación a Medida<br>
             <span class="text-graphite underline decoration-graphite/30 decoration-2 underline-offset-4">en El Quisco, Algarrobo</span><br>
             y El Tabo.
           </h1>
 
-          <!-- SUBTÍTULO EN NEGRITA TÉCNICA -->
-          <p class="text-lg sm:text-xl font-bold text-graphite leading-snug max-w-2xl pt-2">
+          <!-- SUBTÍTULO EN NEGRITA TÉCNICA (Oculto en celulares para no distraer) -->
+          <p class="hidden md:block text-lg sm:text-xl font-bold text-graphite leading-snug max-w-2xl pt-2">
             Fabricación y venta directa en taller para maestros, empresas y hogares del Litoral Central.
           </p>
 
-          <!-- SELLO CLAVE ANTI-AMBIGÜEDAD (REGLA FUNDAMENTAL) -->
-          <div class="bg-white border-2 border-graphite p-4 sm:p-5 relative shadow-[4px_4px_0px_#1E2022]">
-            <div class="flex items-start space-x-3">
+          <!-- SELLO CLAVE ANTI-AMBIGÜEDAD (REGLA FUNDAMENTAL: UNA SOLA LÍNEA LIMPIA EN MÓVILES) -->
+          <div class="bg-white border-2 border-graphite p-2.5 sm:p-5 relative shadow-[3px_3px_0px_#1E2022] sm:shadow-[4px_4px_0px_#1E2022]">
+            <!-- Versión Móvil: Una sola línea limpia -->
+            <div class="flex items-center space-x-2 md:hidden">
+              <div class="bg-graphite text-white font-mono font-bold text-[10px] px-1.5 py-0.5 flex-shrink-0">
+                AVISO
+              </div>
+              <div class="font-extrabold text-graphite uppercase tracking-wide text-xs truncate">
+                SÓLO FABRICACIÓN Y VENTA // NO REALIZAMOS INSTALACIONES
+              </div>
+            </div>
+            <!-- Versión Desktop: Desglose completo explicativo -->
+            <div class="hidden md:flex items-start space-x-3">
               <div class="mt-0.5 bg-graphite text-white font-mono font-bold text-xs px-2 py-1 flex-shrink-0">
                 AVISO
               </div>
               <div class="text-sm font-body">
                 <span class="font-extrabold text-graphite uppercase tracking-wide block text-sm sm:text-base">
-                  No realizamos instalaciones.
+                  SÓLO FABRICACIÓN Y VENTA // NO REALIZAMOS INSTALACIONES
                 </span>
                 <span class="text-graphite-light">
                   Somos taller de confección y plegado. Diseñamos y doblamos las piezas exactas con tus medidas para que tú o tu maestro instalador solo tengan que atornillar y sellar en faena.
@@ -305,8 +315,8 @@
             </div>
           </div>
 
-          <!-- ESPECIFICACIÓN RÁPIDA DE ESPESORES -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 font-mono text-xs">
+          <!-- ESPECIFICACIÓN RÁPIDA DE ESPESORES (Oculto en celulares para no empujar el simulador hacia abajo) -->
+          <div class="hidden md:grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 font-mono text-xs">
             <div class="border border-graphite/20 bg-white/70 p-2">
               <span class="text-graphite/60 block text-[10px]">CALIBRE 0.4 MM</span>
               <span class="font-bold">Económico / Cielos</span>
@@ -325,19 +335,19 @@
             </div>
           </div>
 
-          <!-- CTA DE ALTA CONVERSIÓN CON PULSO DE COLOR VERDE WHATSAPP ÚNICAMENTE -->
-          <div class="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <!-- CTA DE ALTA CONVERSIÓN CON ACCIÓN INMEDIATA -->
+          <div class="pt-1 sm:pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             <a href="https://wa.me/56933324024?text=Hola%20Hojalater%C3%ADa%20Los%20Cerezos%2C%20tengo%20unas%20medidas%20para%20cotizar%20un%20plegado%20de%20zinc." 
                target="_blank" 
                rel="noopener noreferrer"
-               class="btn-whatsapp-pulse inline-flex items-center justify-center space-x-3 bg-wagreen hover:bg-wagreen-dark text-[#052b11] font-condensed font-black text-xl sm:text-2xl uppercase tracking-wider px-8 py-4 border-2 border-[#138a3c] shadow-lg transition-all active:translate-y-0.5">
+               class="btn-whatsapp-pulse inline-flex items-center justify-center space-x-3 bg-wagreen hover:bg-wagreen-dark text-[#052b11] font-condensed font-black text-xl sm:text-2xl uppercase tracking-wider px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-[#138a3c] shadow-lg transition-all active:translate-y-0.5">
               <svg class="w-6 h-6 fill-current flex-shrink-0" viewBox="0 0 24 24">
                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
               </svg>
               <span>Cotizar con el Taller</span>
             </a>
 
-            <div class="text-xs font-mono text-graphite-light flex flex-col justify-center">
+            <div class="hidden sm:flex text-xs font-mono text-graphite-light flex-col justify-center">
               <span>📍 Los Cerezos 053, El Quisco</span>
               <span class="font-bold text-graphite">Tiempo de respuesta: Inmediato</span>
             </div>
@@ -592,16 +602,16 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Encabezado de Sección Estilo Registro Técnico -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b-2 border-graphite pb-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 border-b-2 border-graphite pb-4">
         <div>
           <div class="font-mono text-xs font-bold tracking-widest text-graphite/60 uppercase mb-1">
             SECCIÓN 02 // CATÁLOGO DE FABRICACIÓN EN HOJALATERÍA
           </div>
-          <h2 class="text-4xl sm:text-5xl md:text-6xl font-condensed font-black uppercase text-graphite tracking-tight leading-none">
+          <h2 class="text-3xl sm:text-5xl md:text-6xl font-condensed font-black uppercase text-graphite tracking-tight leading-none">
             Piezas de Zinc Galvanizado para Obras en el Litoral Central
           </h2>
         </div>
-        <div class="mt-4 md:mt-0 font-mono text-xs text-graphite-light max-w-sm text-right">
+        <div class="hidden md:block mt-4 md:mt-0 font-mono text-xs text-graphite-light max-w-sm text-right">
           <span>PIEZAS FABRICADAS HASTA EN 3.0 METROS CONTINUOS. DESARROLLOS SEGÚN PLANO O MUESTRA FÍSICA.</span>
         </div>
       </div>
@@ -610,30 +620,31 @@
       <div class="border-t border-l border-graphite/25 grid grid-cols-1 md:grid-cols-12">
         
         <!-- ÍTEM 1: TECHUMBRES Y REMATES PERIMETRALES (ANCHO 7 COLUMNAS) -->
-        <div class="md:col-span-7 border-r border-b border-graphite/25 p-6 lg:p-8 bg-white relative group hover:bg-zinc-page/50 transition-colors flex flex-col justify-between">
+        <div class="md:col-span-7 border-r border-b border-graphite/25 p-4 sm:p-6 lg:p-8 bg-white relative group hover:bg-zinc-page/50 transition-colors flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between font-mono text-xs text-graphite/50 mb-3">
+            <div class="hidden md:flex items-center justify-between font-mono text-xs text-graphite/50 mb-3">
               <span>REF: TCH-01 // COBERTURAS</span>
               <span class="border border-graphite/20 px-2 py-0.5 bg-zinc-page text-graphite font-bold">CALIBRE 0.4 A 0.6 MM</span>
             </div>
 
-            <h3 class="text-3xl sm:text-4xl font-condensed font-bold uppercase text-graphite mb-2">
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-condensed font-bold uppercase text-graphite mb-2">
               Remates de Techumbre & Hojalatería Perimetral
             </h3>
 
-            <p class="text-graphite-light text-sm mb-4 max-w-xl">
+            <!-- Texto descriptivo (Oculto en móvil) -->
+            <p class="hidden md:block text-graphite-light text-sm mb-4 max-w-xl">
               Solución definitiva contra filtraciones costeras por lluvia y viento en el Litoral. Plegamos caballetes para todo tipo de pendientes de teja o zinc, limahoyas profundas, forros cortagoteras y bota-aguas para encuentro de muro.
             </p>
 
             <!-- FICHA DE CONTROL DE FABRICACIÓN (FOTO REAL DE TALLER) -->
-            <div class="bg-white border border-[#1E2022]/20 p-2 sm:p-2.5 mb-5 shadow-xs group/ficha transition-all">
-              <div class="flex items-center justify-between font-mono text-[10px] text-[#1E2022]/60 uppercase tracking-wider px-1 pb-1.5 border-b border-[#1E2022]/10 mb-2">
+            <div class="bg-white border border-[#1E2022]/20 p-1.5 sm:p-2.5 mb-3 sm:mb-5 shadow-xs group/ficha transition-all">
+              <div class="hidden md:flex items-center justify-between font-mono text-[10px] text-[#1E2022]/60 uppercase tracking-wider px-1 pb-1.5 border-b border-[#1E2022]/10 mb-2">
                 <span class="truncate mr-2">REF_PROYECTO: #LC-TCH-01 // PLEGADO: CABALLETES Y REMATES</span>
                 <span class="inline-flex items-center text-emerald-700 font-bold flex-shrink-0">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse"></span> LISTO PARA RETIRO
                 </span>
               </div>
-              <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] w-full">
+              <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/techumbres.jpg" 
                      alt="Trabajo real en taller: Remates de Techumbre y Caballetes"
                      class="w-full h-full object-cover filter grayscale contrast-125 brightness-95 group-hover/ficha:grayscale-0 group-hover:grayscale-0 transition-all duration-500"
@@ -644,8 +655,8 @@
               </div>
             </div>
 
-            <!-- Despiece técnico / Diagrama de pliegue -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6 font-mono text-xs">
+            <!-- Despiece técnico / Diagrama de pliegue (Oculto en móvil) -->
+            <div class="hidden md:grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6 font-mono text-xs">
               <div class="border border-dashed border-graphite/30 p-2.5 bg-zinc-page">
                 <span class="font-bold block text-graphite">CABALLETES</span>
                 <span class="text-[11px] text-graphite/60">Desarrollo 33/40/50 cm</span>
@@ -666,39 +677,40 @@
           </div>
 
           <div class="flex items-center justify-between pt-2 border-t border-graphite/10">
-            <span class="font-mono text-xs text-graphite/70">Largo máximo estándar: 2.0 y 3.0 mts</span>
+            <span class="hidden md:inline font-mono text-xs text-graphite/70">Largo máximo estándar: 2.0 y 3.0 mts</span>
             <button data-quote-product="Remates de Techumbre y Caballetes"
-                    class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs border border-[#179644] transition-colors">
+                    class="w-full md:w-auto inline-flex items-center justify-center space-x-1.5 px-4 py-2.5 md:py-1.5 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs border border-[#179644] transition-colors active:scale-95">
               <span>+ Cotizar dimensiones</span>
             </button>
           </div>
         </div>
 
         <!-- ÍTEM 2: CAMPANAS DE QUINCHO Y ASADORES (ANCHO 5 COLUMNAS) -->
-        <div class="md:col-span-5 border-r border-b border-graphite/25 p-6 lg:p-8 bg-zinc-page relative group hover:bg-white transition-colors flex flex-col justify-between">
+        <div class="md:col-span-5 border-r border-b border-graphite/25 p-4 sm:p-6 lg:p-8 bg-zinc-page relative group hover:bg-white transition-colors flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between font-mono text-xs text-graphite/50 mb-3">
+            <div class="hidden md:flex items-center justify-between font-mono text-xs text-graphite/50 mb-3">
               <span>REF: QNC-02 // QUINCHOS</span>
               <span class="border border-graphite/20 px-2 py-0.5 bg-white text-graphite font-bold">CALIBRE 0.5 Y 0.6 MM</span>
             </div>
 
-            <h3 class="text-3xl sm:text-4xl font-condensed font-bold uppercase text-graphite mb-2">
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-condensed font-bold uppercase text-graphite mb-2">
               Campanas para Quinchos y Asaderas
             </h3>
 
-            <p class="text-graphite-light text-sm mb-4">
+            <!-- Texto descriptivo (Oculto en móvil) -->
+            <p class="hidden md:block text-graphite-light text-sm mb-4">
               Construcción robusta a escuadra perfecta. Geometría optimizada con tiro cónico para evitar devoluciones de humo con el viento marino. Opción en Zincalum natural brillante o Zincalum Prepintado Negro mate.
             </p>
 
             <!-- FICHA DE CONTROL DE FABRICACIÓN (FOTO REAL DE TALLER) -->
-            <div class="bg-white border border-[#1E2022]/20 p-2 sm:p-2.5 mb-5 shadow-xs group/ficha transition-all">
-              <div class="flex items-center justify-between font-mono text-[10px] text-[#1E2022]/60 uppercase tracking-wider px-1 pb-1.5 border-b border-[#1E2022]/10 mb-2">
+            <div class="bg-white border border-[#1E2022]/20 p-1.5 sm:p-2.5 mb-3 sm:mb-5 shadow-xs group/ficha transition-all">
+              <div class="hidden md:flex items-center justify-between font-mono text-[10px] text-[#1E2022]/60 uppercase tracking-wider px-1 pb-1.5 border-b border-[#1E2022]/10 mb-2">
                 <span class="truncate mr-2">REF_PROYECTO: #LC-QNC-02 // FABRICACIÓN: CAMPANA</span>
                 <span class="inline-flex items-center text-emerald-700 font-bold flex-shrink-0">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse"></span> LISTO PARA RETIRO
                 </span>
               </div>
-              <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] w-full">
+              <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/campana-quincho.jpg" 
                      alt="Trabajo real en taller: Campana de Quincho con tiro y extractor"
                      class="w-full h-full object-cover filter grayscale contrast-125 brightness-95 group-hover/ficha:grayscale-0 group-hover:grayscale-0 transition-all duration-500"
@@ -709,7 +721,8 @@
               </div>
             </div>
 
-            <ul class="font-mono text-xs space-y-1.5 mb-6 text-graphite">
+            <!-- Lista técnica (Oculta en móvil) -->
+            <ul class="hidden md:block font-mono text-xs space-y-1.5 mb-6 text-graphite">
               <li class="flex items-center space-x-2">
                 <span class="text-graphite font-bold">▸</span>
                 <span>Campanas de 1, 2, 3 y 4 aguas</span>
@@ -726,39 +739,40 @@
           </div>
 
           <div class="flex items-center justify-between pt-2 border-t border-graphite/10">
-            <span class="font-mono text-xs text-graphite/70">Fabricación a medida exacta</span>
+            <span class="hidden md:inline font-mono text-xs text-graphite/70">Fabricación a medida exacta</span>
             <button data-quote-product="Campana de Quincho"
-                    class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs border border-[#179644] transition-colors">
+                    class="w-full md:w-auto inline-flex items-center justify-center space-x-1.5 px-4 py-2.5 md:py-1.5 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs border border-[#179644] transition-colors active:scale-95">
               <span>+ Cotizar dimensiones</span>
             </button>
           </div>
         </div>
 
         <!-- ÍTEM 3: DUCTOS DE VENTILACIÓN Y EXTRACCIÓN (ANCHO 5 COLUMNAS) -->
-        <div class="md:col-span-5 border-r border-b border-graphite/25 p-6 lg:p-8 bg-zinc-page relative group hover:bg-white transition-colors flex flex-col justify-between">
+        <div class="md:col-span-5 border-r border-b border-graphite/25 p-4 sm:p-6 lg:p-8 bg-zinc-page relative group hover:bg-white transition-colors flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between font-mono text-xs text-graphite/50 mb-3">
+            <div class="hidden md:flex items-center justify-between font-mono text-xs text-graphite/50 mb-3">
               <span>REF: DCT-03 // VENTILACIÓN</span>
               <span class="border border-graphite/20 px-2 py-0.5 bg-white text-graphite font-bold">DIÁMETROS SEGÚN EXTRACCIÓN</span>
             </div>
 
-            <h3 class="text-3xl sm:text-4xl font-condensed font-bold uppercase text-graphite mb-2">
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-condensed font-bold uppercase text-graphite mb-2">
               Ductos, Tubos y Bajadas
             </h3>
 
-            <p class="text-graphite-light text-sm mb-4">
+            <!-- Texto descriptivo (Oculto en móvil) -->
+            <p class="hidden md:block text-graphite-light text-sm mb-4">
               Ductería cilíndrica y rectangular para extracción de aire, campanas de cocina, combustiones lentas y bajadas de agua lluvia. Uniones machihembradas y engrapadas mecánicamente con sello hermético.
             </p>
 
             <!-- FICHA DE CONTROL DE FABRICACIÓN (FOTO REAL DE TALLER) -->
-            <div class="bg-white border border-[#1E2022]/20 p-2 sm:p-2.5 mb-5 shadow-xs group/ficha transition-all">
-              <div class="flex items-center justify-between font-mono text-[10px] text-[#1E2022]/60 uppercase tracking-wider px-1 pb-1.5 border-b border-[#1E2022]/10 mb-2">
+            <div class="bg-white border border-[#1E2022]/20 p-1.5 sm:p-2.5 mb-3 sm:mb-5 shadow-xs group/ficha transition-all">
+              <div class="hidden md:flex items-center justify-between font-mono text-[10px] text-[#1E2022]/60 uppercase tracking-wider px-1 pb-1.5 border-b border-[#1E2022]/10 mb-2">
                 <span class="truncate mr-2">REF_PROYECTO: #LC-DCT-03 // DUCTERÍA: CILÍNDRICA</span>
                 <span class="inline-flex items-center text-emerald-700 font-bold flex-shrink-0">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse"></span> LISTO PARA RETIRO
                 </span>
               </div>
-              <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] w-full">
+              <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/ductos-ventilacion.jpg" 
                      alt="Trabajo real en taller: Ductos cilíndricos y codos en gajos"
                      class="w-full h-full object-cover filter grayscale contrast-125 brightness-95 group-hover/ficha:grayscale-0 group-hover:grayscale-0 transition-all duration-500"
@@ -769,7 +783,8 @@
               </div>
             </div>
 
-            <div class="font-mono text-xs grid grid-cols-2 gap-2 mb-6">
+            <!-- Grilla técnica (Oculta en móvil) -->
+            <div class="hidden md:grid font-mono text-xs grid-cols-2 gap-2 mb-6">
               <div class="p-2 border border-graphite/15 bg-white">
                 <span class="font-bold block">Tubos Rectos</span>
                 <span class="text-[11px] text-graphite/60">Tramos de 1.0 m</span>
@@ -790,39 +805,40 @@
           </div>
 
           <div class="flex items-center justify-between pt-2 border-t border-graphite/10">
-            <span class="font-mono text-xs text-graphite/70">Corte y pestañado limpio</span>
+            <span class="hidden md:inline font-mono text-xs text-graphite/70">Corte y pestañado limpio</span>
             <button data-quote-product="Ductos y Tubos de Ventilación"
-                    class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs border border-[#179644] transition-colors">
+                    class="w-full md:w-auto inline-flex items-center justify-center space-x-1.5 px-4 py-2.5 md:py-1.5 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs border border-[#179644] transition-colors active:scale-95">
               <span>+ Cotizar dimensiones</span>
             </button>
           </div>
         </div>
 
         <!-- ÍTEM 4: GABINETES, NICHOS DE GAS Y PIEZAS ESPECIALES (ANCHO 7 COLUMNAS) -->
-        <div class="md:col-span-7 border-r border-b border-graphite/25 p-6 lg:p-8 bg-white relative group hover:bg-zinc-page/50 transition-colors flex flex-col justify-between">
+        <div class="md:col-span-7 border-r border-b border-graphite/25 p-4 sm:p-6 lg:p-8 bg-white relative group hover:bg-zinc-page/50 transition-colors flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between font-mono text-xs text-graphite/50 mb-3">
+            <div class="hidden md:flex items-center justify-between font-mono text-xs text-graphite/50 mb-3">
               <span>REF: GAB-04 // GABINETES Y NORMAS</span>
               <span class="border border-graphite/20 px-2 py-0.5 bg-zinc-page text-graphite font-bold">PLANCHA GALVANIZADA / ZINCALUM</span>
             </div>
 
-            <h3 class="text-3xl sm:text-4xl font-condensed font-bold uppercase text-graphite mb-2">
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-condensed font-bold uppercase text-graphite mb-2">
               Gabinetes de Gas, Cajas Eléctricas & Bandejas
             </h3>
 
-            <p class="text-graphite-light text-sm mb-4 max-w-xl">
+            <!-- Texto descriptivo (Oculto en móvil) -->
+            <p class="hidden md:block text-graphite-light text-sm mb-4 max-w-xl">
               Fabricación de nichos metálicos para cilindros de gas GLP de 45 kg y 15 kg (cumplimiento de ventilación superior e inferior exigida por normativa SEC), cajas cubre-medidores de agua/luz, bandejas de goteo y cajas a requerimiento específico.
             </p>
 
             <!-- FICHA DE CONTROL DE FABRICACIÓN (FOTO REAL DE TALLER) -->
-            <div class="bg-white border border-[#1E2022]/20 p-2 sm:p-2.5 mb-5 shadow-xs group/ficha transition-all">
-              <div class="flex items-center justify-between font-mono text-[10px] text-[#1E2022]/60 uppercase tracking-wider px-1 pb-1.5 border-b border-[#1E2022]/10 mb-2">
+            <div class="bg-white border border-[#1E2022]/20 p-1.5 sm:p-2.5 mb-3 sm:mb-5 shadow-xs group/ficha transition-all">
+              <div class="hidden md:flex items-center justify-between font-mono text-[10px] text-[#1E2022]/60 uppercase tracking-wider px-1 pb-1.5 border-b border-[#1E2022]/10 mb-2">
                 <span class="truncate mr-2">REF_PROYECTO: #LC-GAB-04 // GABINETES: NORMA SEC 2x45KG</span>
                 <span class="inline-flex items-center text-emerald-700 font-bold flex-shrink-0">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse"></span> LISTO PARA RETIRO
                 </span>
               </div>
-              <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] w-full">
+              <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/gabinetes-gas.jpg" 
                      alt="Trabajo real en taller: Gabinete de Gas GLP reglamentario"
                      class="w-full h-full object-cover filter grayscale contrast-125 brightness-95 group-hover/ficha:grayscale-0 group-hover:grayscale-0 transition-all duration-500"
@@ -833,7 +849,8 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 font-mono text-xs">
+            <!-- Grilla técnica (Oculta en móvil) -->
+            <div class="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 font-mono text-xs">
               <div class="border border-graphite/20 p-3 bg-zinc-page">
                 <span class="font-bold block text-graphite">GABINETE 2x45 KG</span>
                 <span class="text-[11px] text-graphite/60 block mt-1">Con celosías de ventilación reglamentarias y portacandado.</span>
@@ -850,9 +867,9 @@
           </div>
 
           <div class="flex items-center justify-between pt-2 border-t border-graphite/10">
-            <span class="font-mono text-xs text-graphite/70">Diseño según requerimiento de obra</span>
+            <span class="hidden md:inline font-mono text-xs text-graphite/70">Diseño según requerimiento de obra</span>
             <button data-quote-product="Gabinetes de Gas y Piezas Especiales"
-                    class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs border border-[#179644] transition-colors">
+                    class="w-full md:w-auto inline-flex items-center justify-center space-x-1.5 px-4 py-2.5 md:py-1.5 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs border border-[#179644] transition-colors active:scale-95">
               <span>+ Cotizar dimensiones</span>
             </button>
           </div>
@@ -892,29 +909,29 @@
             <span class="text-wagreen">Lo fabricamos tal cual.</span>
           </h2>
 
-          <p class="text-lg text-zinc-300 font-body max-w-xl">
+          <p class="hidden md:block text-lg text-zinc-300 font-body max-w-xl">
             No necesitas un plano de arquitecto profesional ni programas complejos. La gran mayoría de nuestros clientes son vecinos de la zona y maestros constructores con croquis a mano alzada.
           </p>
 
           <!-- PASOS TÉCNICOS EN TALLER -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 font-mono text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1 sm:pt-2 font-mono text-xs">
             
-            <div class="border border-white/15 bg-white/5 p-4 relative">
-              <span class="text-wagreen font-bold text-lg block mb-1">01.</span>
-              <span class="font-bold text-white block mb-1">Dibuja tu pieza</span>
-              <span class="text-zinc-400">Toma una hoja de papel, dibuja el perfil y anota las medidas en centímetros o milímetros.</span>
+            <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
+              <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">01.</span>
+              <span class="font-bold text-white block mb-0.5 sm:mb-1">Dibuja tu pieza</span>
+              <span class="text-zinc-400 hidden sm:block">Toma una hoja de papel, dibuja el perfil y anota las medidas en centímetros o milímetros.</span>
             </div>
 
-            <div class="border border-white/15 bg-white/5 p-4 relative">
-              <span class="text-wagreen font-bold text-lg block mb-1">02.</span>
-              <span class="font-bold text-white block mb-1">Foto al WhatsApp</span>
-              <span class="text-zinc-400">Sácale una foto con tu teléfono y envíanosla directamente al número del taller.</span>
+            <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
+              <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">02.</span>
+              <span class="font-bold text-white block mb-0.5 sm:mb-1">Foto al WhatsApp</span>
+              <span class="text-zinc-400 hidden sm:block">Sácale una foto con tu teléfono y envíanosla directamente al número del taller.</span>
             </div>
 
-            <div class="border border-white/15 bg-white/5 p-4 relative">
-              <span class="text-wagreen font-bold text-lg block mb-1">03.</span>
-              <span class="font-bold text-white block mb-1">Cotización y Retiro</span>
-              <span class="text-zinc-400">Te enviamos el valor exacto de inmediato. Doblamos la chapa y vienes a retirar a Los Cerezos 053.</span>
+            <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
+              <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">03.</span>
+              <span class="font-bold text-white block mb-0.5 sm:mb-1">Cotización y Retiro</span>
+              <span class="text-zinc-400 hidden sm:block">Te enviamos el valor exacto de inmediato. Doblamos la chapa y vienes a retirar a Los Cerezos 053.</span>
             </div>
 
           </div>
@@ -1058,7 +1075,7 @@
             Taller Físico en El Quisco
           </h2>
 
-          <p class="text-graphite-light text-base">
+          <p class="hidden md:block text-graphite-light text-base">
             Ubicados estratégicamente en Los Cerezos 053 (El Quisco), abastecemos rápidamente con piezas y cortes a medida a maestros instaladores y constructoras de Algarrobo, El Quisco, El Tabo y balnearios vecinos.
           </p>
 
@@ -1276,25 +1293,27 @@
 
 
   <!-- =========================================================================
-       BARRA FIJA DE ACCIÓN RÁPIDA PARA DISPOSITIVOS MÓVILES
+       BARRA DE ACCIÓN FLOTANTE INFERIOR (MOBILE EXCLUSIVE: LLAMAR + WHATSAPP CRO)
        ========================================================================= -->
-  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-graphite/95 backdrop-blur-md border-t-2 border-graphite p-2 flex items-center gap-2">
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t-2 border-[#1E2022] p-2 sm:p-2.5 flex items-center gap-2 shadow-[0_-4px_16px_rgba(0,0,0,0.25)]">
+    <!-- Botón Izquierdo: "Llamar Taller" (Gris grafito #1E2022) -->
     <a href="tel:+56933324024" 
-       class="flex-1 py-3 px-2 bg-zinc-page text-graphite font-condensed font-bold text-center uppercase tracking-wider text-sm border border-graphite flex items-center justify-center space-x-1">
-      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+       class="flex-1 py-3 px-2 bg-[#1E2022] hover:bg-[#2c2f32] text-white font-condensed font-bold text-center uppercase tracking-wider text-sm border border-[#1E2022] flex items-center justify-center space-x-1.5 active:scale-95 transition-transform shadow-sm">
+      <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24">
         <path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z"/>
       </svg>
-      <span>Llamar</span>
+      <span>Llamar Taller</span>
     </a>
 
+    <!-- Botón Derecho: "Cotizar por WhatsApp" (Verde #25D366) -->
     <a href="https://wa.me/56933324024?text=Hola%20Hojalater%C3%ADa%20Los%20Cerezos%2C%20quisiera%20cotizar%20un%20plegado%20de%20zinc%20a%20medida." 
        target="_blank" 
        rel="noopener noreferrer"
-       class="flex-[2] py-3 px-3 bg-wagreen text-[#063013] font-condensed font-black text-center uppercase tracking-wider text-base border border-[#138a3c] flex items-center justify-center space-x-2">
-      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+       class="flex-1 py-3 px-2 bg-[#25D366] hover:bg-[#20ba5a] text-[#052b11] font-condensed font-black text-center uppercase tracking-wider text-sm border border-[#179644] flex items-center justify-center space-x-1.5 active:scale-95 transition-transform shadow-sm">
+      <svg class="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24">
         <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.764.78 2.795.781h.001c3.182 0 5.768-2.587 5.769-5.767.001-3.182-2.585-5.766-5.77-5.766zm3.385 8.165c-.141.396-.704.757-1.002.799-.297.042-.647.071-2.073-.522-1.748-.727-2.883-2.5-2.97-2.616-.088-.117-.714-.95-.714-1.815 0-.865.452-1.29.613-1.465.161-.176.353-.22.47-.22.118 0 .235.001.338.006.107.005.251-.041.393.3.147.353.5 1.22.544 1.308.044.088.073.191.015.308-.059.117-.088.19-.176.293-.088.103-.186.23-.265.31-.088.087-.18.182-.078.358.103.176.456.753.978 1.218.673.599 1.24.786 1.417.873.176.088.28.074.383-.044.103-.118.441-.515.559-.691.118-.176.235-.147.397-.088.162.059 1.03.486 1.206.574.177.088.294.132.338.206.044.073.044.426-.097.822z"/>
       </svg>
-      <span>Cotizar WhatsApp</span>
+      <span>Cotizar por WhatsApp</span>
     </a>
   </div>
 
