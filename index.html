@@ -880,7 +880,7 @@
   <!-- =========================================================================
        EL CONTENEDOR DE PLANOS ("MESA DE TRABAJO" / MÓDULO DE CONFIANZA)
        ========================================================================= -->
-  <section id="mesa-de-trabajo" class="border-b border-graphite/20 py-16 bg-workbench text-white relative overflow-hidden">
+  <section id="mesa-de-trabajo" class="border-b border-graphite/20 py-12 sm:py-16 bg-workbench text-white relative overflow-hidden">
     
     <!-- Marcas esquineras técnicas -->
     <div class="cad-cross-tl opacity-40"></div>
@@ -890,84 +890,55 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- COLUMNA IZQUIERDA: MENSAJE DIRECTO AL CLIENTE / MAESTRO -->
-        <div class="lg:col-span-7 space-y-6">
-          
-          <div class="inline-flex items-center space-x-2 border border-white/30 px-3 py-1 font-mono text-xs tracking-widest text-zinc-300">
-            <span class="w-2 h-2 bg-wagreen inline-block"></span>
-            <span>MESA DE CORTE Y RECEPCIÓN TÉCNICA</span>
-          </div>
-
-          <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-condensed font-black uppercase tracking-tight text-white leading-none">
-            Trae tus medidas o tu dibujo hecho a mano.<br>
-            <span class="text-wagreen">Lo fabricamos tal cual.</span>
-          </h2>
-
-          <p class="hidden md:block text-lg text-zinc-300 font-body max-w-xl">
-            No necesitas un plano de arquitecto profesional ni programas complejos. La gran mayoría de nuestros clientes son vecinos de la zona y maestros constructores con croquis a mano alzada.
-          </p>
-
-          <!-- PASOS TÉCNICOS EN TALLER -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1 sm:pt-2 font-mono text-xs">
-            
-            <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
-              <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">01.</span>
-              <span class="font-bold text-white block mb-0.5 sm:mb-1">Dibuja tu pieza</span>
-              <span class="text-zinc-400 hidden sm:block">Toma una hoja de papel, dibuja el perfil y anota las medidas en centímetros o milímetros.</span>
-            </div>
-
-            <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
-              <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">02.</span>
-              <span class="font-bold text-white block mb-0.5 sm:mb-1">Foto al WhatsApp</span>
-              <span class="text-zinc-400 hidden sm:block">Sácale una foto con tu teléfono y envíanosla directamente al número del taller.</span>
-            </div>
-
-            <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
-              <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">03.</span>
-              <span class="font-bold text-white block mb-0.5 sm:mb-1">Cotización y Retiro</span>
-              <span class="text-zinc-400 hidden sm:block">Te enviamos el valor exacto de inmediato. Doblamos la chapa y vienes a retirar a Los Cerezos 053.</span>
-            </div>
-
-          </div>
-
-          <!-- BOTONES GIGANTES DE CONTACTO DIRECTO -->
-          <div class="pt-4 flex flex-col sm:flex-row gap-4">
-            
-            <!-- Botón Gigante WhatsApp Verde -->
-            <a href="https://wa.me/56933324024?text=Hola%20Hojalater%C3%ADa%20Los%20Cerezos%2C%20tengo%20una%20foto%20con%20un%20dibujo%20y%20medidas%20para%20fabricar%20una%20pieza%20de%20zinc." 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="btn-whatsapp-pulse flex-1 inline-flex items-center justify-center space-x-3 bg-wagreen hover:bg-wagreen-dark text-[#03240d] font-condensed font-black text-2xl uppercase tracking-wider py-4 px-6 border-2 border-[#138a3c] transition-all text-center">
-              <svg class="w-7 h-7 fill-current flex-shrink-0" viewBox="0 0 24 24">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.764.78 2.795.781h.001c3.182 0 5.768-2.587 5.769-5.767.001-3.182-2.585-5.766-5.77-5.766zm3.385 8.165c-.141.396-.704.757-1.002.799-.297.042-.647.071-2.073-.522-1.748-.727-2.883-2.5-2.97-2.616-.088-.117-.714-.95-.714-1.815 0-.865.452-1.29.613-1.465.161-.176.353-.22.47-.22.118 0 .235.001.338.006.107.005.251-.041.393.3.147.353.5 1.22.544 1.308.044.088.073.191.015.308-.059.117-.088.19-.176.293-.088.103-.186.23-.265.31-.088.087-.18.182-.078.358.103.176.456.753.978 1.218.673.599 1.24.786 1.417.873.176.088.28.074.383-.044.103-.118.441-.515.559-.691.118-.176.235-.147.397-.088.162.059 1.03.486 1.206.574.177.088.294.132.338.206.044.073.044.426-.097.822z"/>
-              </svg>
-              <span>Enviar Dibujo por WhatsApp</span>
-            </a>
-
-            <!-- Botón Llamada Telefónica Directa -->
-            <a href="tel:+56933324024" 
-               class="inline-flex items-center justify-center space-x-2 bg-transparent hover:bg-white/10 text-white font-condensed font-bold text-xl uppercase tracking-wider py-4 px-6 border-2 border-white/40 transition-colors">
-              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z"/>
-              </svg>
-              <span>Llamar al Maestro (+56 9 3332 4024)</span>
-            </a>
-
-          </div>
-
+      <!-- ENCABEZADO Y PASOS TÉCNICOS -->
+      <div class="max-w-4xl mb-8 sm:mb-12">
+        <div class="inline-flex items-center space-x-2 border border-white/30 px-3 py-1 font-mono text-xs tracking-widest text-zinc-300 mb-3">
+          <span class="w-2 h-2 bg-wagreen inline-block"></span>
+          <span>MESA DE CORTE Y RECEPCIÓN TÉCNICA</span>
         </div>
 
-        <!-- COLUMNA DERECHA: COLLAGE DE TALLER ASIMÉTRICO (DE TU IDEA A LA LATA TERMINADA) -->
-        <div class="lg:col-span-5">
-          <div class="relative w-full max-w-[480px] mx-auto py-2 sm:py-4">
+        <h2 class="text-3xl sm:text-5xl md:text-6xl font-condensed font-black uppercase tracking-tight text-white leading-none mb-3">
+          Trae tus medidas o tu dibujo hecho a mano.<br>
+          <span class="text-wagreen">Lo fabricamos tal cual.</span>
+        </h2>
 
-            <!-- IMAGEN A: Foto recortada de bosquejo/dibujo a mano alzada arrugado sobre papel milimetrado -->
-            <div class="relative w-[86%] sm:w-[82%] bg-white p-2 sm:p-2.5 transform -rotate-2 border shadow-sm transition-transform duration-300 hover:rotate-0 z-10">
-              
-              <!-- Cinta adhesiva técnica superior (efecto masking tape) -->
-              <div class="absolute -top-3 left-8 w-24 h-5 bg-amber-100/90 border border-amber-300/60 shadow-xs -rotate-2 pointer-events-none z-20"></div>
+        <p class="hidden md:block text-base sm:text-lg text-zinc-300 font-body max-w-2xl mb-6">
+          No necesitas un plano de arquitecto profesional ni programas complejos. La gran mayoría de nuestros clientes son vecinos de la zona y maestros constructores con croquis a mano alzada.
+        </p>
+
+        <!-- PASOS TÉCNICOS EN TALLER -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 font-mono text-xs">
+          <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
+            <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">01.</span>
+            <span class="font-bold text-white block mb-0.5 sm:mb-1">Dibuja tu pieza</span>
+            <span class="text-zinc-400 hidden sm:block">Toma una hoja de papel, dibuja el perfil y anota las medidas en centímetros o milímetros.</span>
+          </div>
+
+          <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
+            <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">02.</span>
+            <span class="font-bold text-white block mb-0.5 sm:mb-1">Foto al WhatsApp</span>
+            <span class="text-zinc-400 hidden sm:block">Sácale una foto con tu teléfono y envíanosla directamente al número del taller.</span>
+          </div>
+
+          <div class="border border-white/15 bg-white/5 p-3 sm:p-4 relative">
+            <span class="text-wagreen font-bold text-base sm:text-lg block mb-0.5 sm:mb-1">03.</span>
+            <span class="font-bold text-white block mb-0.5 sm:mb-1">Cotización y Retiro</span>
+            <span class="text-zinc-400 hidden sm:block">Te enviamos el valor exacto de inmediato. Doblamos la chapa y vienes a retirar a Los Cerezos 053.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENEDOR SECUENCIAL LIMPIO: DE TU IDEA A LA LATA TERMINADA (1 COL MÓVIL / 3 COL DESKTOP) -->
+      <div class="my-8 sm:my-12">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center max-w-5xl mx-auto">
+          
+          <!-- COLUMNA 1: CROQUIS / DIBUJO A MANO -->
+          <div class="md:col-span-5 flex justify-center">
+            <div class="w-full max-w-sm sm:max-w-md bg-white p-2.5 sm:p-3 md:-rotate-1 border border-graphite/20 shadow-md workshop-sequence-card">
+              <!-- Cinta adhesiva técnica de taller -->
+              <div class="relative">
+                <div class="hidden sm:block absolute -top-4 left-6 w-20 h-4 bg-amber-100/90 border border-amber-300/60 shadow-xs -rotate-2 pointer-events-none z-10"></div>
+              </div>
 
               <!-- Micro-Ficha Técnica Superior Foto A -->
               <div class="flex items-center justify-between font-mono text-[10px] text-graphite/70 pb-1.5 mb-1.5 border-b border-graphite/15">
@@ -995,27 +966,33 @@
                 <span class="font-bold text-graphite">TOL: ±1.0 MM</span>
               </div>
             </div>
+          </div>
 
-            <!-- MICRO-TEXTO CONECTOR TIPO PLANO TÉCNICO CON FLECHA SVG FINA -->
-            <div class="relative z-30 -my-6 sm:-my-8 px-2 flex justify-center lg:justify-end lg:pr-4 pointer-events-none">
-              <div class="pointer-events-auto inline-flex items-center gap-2.5 bg-[#1E2022] text-white px-3.5 py-2 border-2 border-wagreen shadow-[0_6px_20px_rgba(0,0,0,0.5)] backdrop-blur-md">
-                <!-- Flecha SVG técnica fina -->
-                <svg class="w-5 h-5 text-wagreen flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14"/>
-                  <path d="M13 6l6 6-6 6"/>
-                </svg>
-                <div class="flex flex-col text-left">
-                  <span class="font-mono text-[9px] text-wagreen font-bold tracking-widest uppercase">CONFIANZA TOTAL // TALLER DIRECTO</span>
-                  <span class="font-condensed font-black text-sm sm:text-base tracking-wider text-white uppercase">
-                    De tu idea a la lata terminada
-                  </span>
-                </div>
+          <!-- COLUMNA 2: CONECTOR TÉCNICO ("DE TU IDEA A LA LATA TERMINADA") -->
+          <div class="md:col-span-2 flex justify-center items-center my-4 md:my-0">
+            <div class="inline-flex md:flex-col items-center justify-center gap-2.5 sm:gap-3 bg-[#1E2022] text-white px-4 py-3 sm:px-4 sm:py-3.5 border-2 border-wagreen shadow-[0_6px_20px_rgba(0,0,0,0.4)] text-center w-full max-w-xs md:max-w-none">
+              <!-- Flecha móvil (abajo) / desktop (derecha) -->
+              <svg class="w-5 h-5 text-wagreen flex-shrink-0 md:hidden animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14"/>
+                <path d="M18 13l-6 6-6-6"/>
+              </svg>
+              <svg class="w-6 h-6 text-wagreen flex-shrink-0 hidden md:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="M13 6l6 6-6 6"/>
+              </svg>
+
+              <div class="flex flex-col text-left md:text-center">
+                <span class="font-mono text-[9px] text-wagreen font-bold tracking-widest uppercase">CONFIANZA TOTAL</span>
+                <span class="font-condensed font-black text-sm lg:text-base tracking-wider text-white uppercase leading-tight">
+                  De tu idea a la lata terminada
+                </span>
               </div>
             </div>
+          </div>
 
-            <!-- IMAGEN B: Foto superpuesta en esquina inferior de pieza final en zinc galvanizado limpia en taller -->
-            <div class="relative ml-auto -mt-4 sm:-mt-6 w-[86%] sm:w-[82%] bg-white p-2 sm:p-2.5 transform rotate-1 border-2 border-[#1E2022] shadow-md transition-transform duration-300 hover:rotate-0 z-20">
-              
+          <!-- COLUMNA 3: PIEZA EN ZINC TERMINADA -->
+          <div class="md:col-span-5 flex justify-center">
+            <div class="w-full max-w-sm sm:max-w-md bg-white p-2.5 sm:p-3 md:rotate-1 border-2 border-[#1E2022] shadow-md workshop-sequence-card">
               <!-- Micro-Ficha Técnica Superior Foto B -->
               <div class="flex items-center justify-between font-mono text-[10px] text-graphite/70 pb-1.5 mb-1.5 border-b border-graphite/15">
                 <span class="font-bold flex items-center gap-1.5 text-graphite">
@@ -1025,7 +1002,7 @@
                 <span class="bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5">100% A MEDIDA</span>
               </div>
 
-              <!-- Foto B Superpuesta -->
+              <!-- Foto B: Pieza Terminada -->
               <div class="relative overflow-hidden aspect-[4/3] bg-zinc-sheet border border-graphite/20">
                 <img src="assets/img/pieza-zinc-terminada.jpg" 
                      alt="Pieza final ya fabricada en zinc galvanizado limpia en el taller Los Cerezos"
@@ -1042,10 +1019,32 @@
                 <span class="text-emerald-700 font-extrabold tracking-wider uppercase">★ Plegado Exacto</span>
               </div>
             </div>
-
           </div>
-        </div>
 
+        </div>
+      </div>
+
+      <!-- BOTONES GIGANTES DE CONTACTO DIRECTO -->
+      <div class="pt-4 flex flex-col sm:flex-row gap-4 max-w-3xl mx-auto">
+        <!-- Botón Gigante WhatsApp Verde -->
+        <a href="https://wa.me/56933324024?text=Hola%20Hojalater%C3%ADa%20Los%20Cerezos%2C%20tengo%20una%20foto%20con%20un%20dibujo%20y%20medidas%20para%20fabricar%20una%20pieza%20de%20zinc." 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn-whatsapp-pulse flex-1 inline-flex items-center justify-center space-x-3 bg-wagreen hover:bg-wagreen-dark text-[#03240d] font-condensed font-black text-xl sm:text-2xl uppercase tracking-wider py-3.5 sm:py-4 px-6 border-2 border-[#138a3c] transition-all text-center">
+          <svg class="w-6 sm:w-7 h-6 sm:h-7 fill-current flex-shrink-0" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.764.78 2.795.781h.001c3.182 0 5.768-2.587 5.769-5.767.001-3.182-2.585-5.766-5.77-5.766zm3.385 8.165c-.141.396-.704.757-1.002.799-.297.042-.647.071-2.073-.522-1.748-.727-2.883-2.5-2.97-2.616-.088-.117-.714-.95-.714-1.815 0-.865.452-1.29.613-1.465.161-.176.353-.22.47-.22.118 0 .235.001.338.006.107.005.251-.041.393.3.147.353.5 1.22.544 1.308.044.088.073.191.015.308-.059.117-.088.19-.176.293-.088.103-.186.23-.265.31-.088.087-.18.182-.078.358.103.176.456.753.978 1.218.673.599 1.24.786 1.417.873.176.088.28.074.383-.044.103-.118.441-.515.559-.691.118-.176.235-.147.397-.088.162.059 1.03.486 1.206.574.177.088.294.132.338.206.044.073.044.426-.097.822z"/>
+          </svg>
+          <span>Enviar Dibujo por WhatsApp</span>
+        </a>
+
+        <!-- Botón Llamada Telefónica Directa -->
+        <a href="tel:+56933324024" 
+           class="inline-flex items-center justify-center space-x-2 bg-transparent hover:bg-white/10 text-white font-condensed font-bold text-lg sm:text-xl uppercase tracking-wider py-3.5 sm:py-4 px-6 border-2 border-white/40 transition-colors">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z"/>
+          </svg>
+          <span>Llamar al Maestro</span>
+        </a>
       </div>
 
     </div>

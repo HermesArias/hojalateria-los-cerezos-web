@@ -140,3 +140,15 @@
   transform: translateZ(0);
 }
 
+/* ==========================================================================
+   SECUENCIA DE TALLER: DE TU IDEA A LA LATA TERMINADA (MESA DE TRABAJO)
+   ========================================================================== */
+.workshop-sequence-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.workshop-sequence-card:hover {
+  transform: rotate(0deg) scale(1.015);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+
