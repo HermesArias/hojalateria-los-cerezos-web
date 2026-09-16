@@ -130,3 +130,13 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #3a3f44;
 }
+
+/* ==========================================================================
+   BARRA FIJA INFERIOR MÓVIL (Z-INDEX Y STACKING CONTEXT PRIORITARIO)
+   ========================================================================== */
+.fixed.bottom-0 {
+  z-index: 50 !important;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+

@@ -288,19 +288,15 @@
             Fabricación y venta directa en taller para maestros, empresas y hogares del Litoral Central.
           </p>
 
-          <!-- SELLO CLAVE ANTI-AMBIGÜEDAD (REGLA FUNDAMENTAL: UNA SOLA LÍNEA LIMPIA EN MÓVILES) -->
-          <div class="bg-white border-2 border-graphite p-2.5 sm:p-5 relative shadow-[3px_3px_0px_#1E2022] sm:shadow-[4px_4px_0px_#1E2022]">
-            <!-- Versión Móvil: Una sola línea limpia -->
-            <div class="flex items-center space-x-2 md:hidden">
-              <div class="bg-graphite text-white font-mono font-bold text-[10px] px-1.5 py-0.5 flex-shrink-0">
-                AVISO
-              </div>
-              <div class="font-extrabold text-graphite uppercase tracking-wide text-xs truncate">
-                SÓLO FABRICACIÓN Y VENTA // NO REALIZAMOS INSTALACIONES
-              </div>
-            </div>
-            <!-- Versión Desktop: Desglose completo explicativo -->
-            <div class="hidden md:flex items-start space-x-3">
+          <!-- FRANJA DE ADVERTENCIA COMPACTA (MÓVIL DIRECTO: SIN PÁRRAFOS LARGOS NI DOBLE CONTENEDOR) -->
+          <div class="md:hidden flex items-center gap-2 bg-amber-50 border border-amber-300 border-l-4 border-l-amber-600 px-2.5 py-1.5 font-mono text-[11px] font-bold text-amber-950 shadow-xs">
+            <span class="bg-amber-600 text-white text-[9px] px-1.5 py-0.5 font-bold uppercase tracking-wider flex-shrink-0">AVISO</span>
+            <span class="uppercase tracking-tight text-[11px] leading-tight font-extrabold">SÓLO FABRICACIÓN Y VENTA // NO REALIZAMOS INSTALACIONES</span>
+          </div>
+
+          <!-- BLOQUE EXPLICATIVO DESKTOP (SOLO PANTALLAS MEDIANAS Y GRANDES) -->
+          <div class="hidden md:block bg-white border-2 border-graphite p-4 sm:p-5 relative shadow-[4px_4px_0px_#1E2022]">
+            <div class="flex items-start space-x-3">
               <div class="mt-0.5 bg-graphite text-white font-mono font-bold text-xs px-2 py-1 flex-shrink-0">
                 AVISO
               </div>
@@ -381,17 +377,17 @@
             </div>
 
             <!-- CONTENEDOR DEL VISUALIZADOR (PLANO SVG vs FOTO REAL CON TRANSICIÓN DE 300MS) -->
-            <div id="hood-viewport-container" class="relative bg-zinc-page/50 p-3 sm:p-4 min-h-[300px] flex flex-col items-center justify-center overflow-hidden">
+            <div id="hood-viewport-container" class="relative bg-zinc-page/50 p-2 sm:p-4 min-h-[220px] sm:min-h-[260px] md:min-h-[300px] flex flex-col items-center justify-center overflow-hidden">
               
               <!-- CAPA 1: PLANO TÉCNICO INTERACTIVO SVG -->
               <div id="hood-blueprint-layer" class="w-full flex flex-col items-center justify-center transition-opacity duration-300">
                 
                 <!-- Cota superior de tiro/ducto rectangular -->
-                <div class="text-[11px] font-mono font-bold text-graphite bg-white/90 border border-graphite/30 px-2 py-0.5 mb-1" id="svg-cota-flue">
+                <div class="text-[10px] sm:text-[11px] font-mono font-bold text-graphite bg-white/90 border border-graphite/30 px-2 py-0.5 mb-1" id="svg-cota-flue">
                   Ducto Rectangular + Sombrerete Plano
                 </div>
 
-                <svg id="hood-svg-canvas" class="w-full max-w-[340px] h-[260px] overflow-visible" viewBox="0 0 400 320">
+                <svg id="hood-svg-canvas" class="w-full max-w-[300px] sm:max-w-[340px] h-[190px] sm:h-[220px] md:h-[260px] overflow-visible" viewBox="0 0 400 320">
                   <!-- Grilla interna de referencia CAD -->
                   <defs>
                     <pattern id="cadGrid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -468,10 +464,10 @@
                 </svg>
 
                 <!-- Etiquetas de Cota Dinámicas -->
-                <div class="w-full flex items-center justify-between font-mono text-[11px] sm:text-xs font-bold text-graphite px-1 sm:px-2 mt-1 gap-1">
-                  <span class="bg-white px-1.5 sm:px-2 py-0.5 border border-graphite/40 shadow-xs" id="svg-cota-width">Ancho (A): 120 cm</span>
-                  <span class="bg-white px-1.5 sm:px-2 py-0.5 border border-graphite/40 shadow-xs" id="svg-cota-depth">Fondo (B): 65 cm</span>
-                  <span class="bg-white px-1.5 sm:px-2 py-0.5 border border-graphite/40 shadow-xs" id="svg-cota-height">Alto (C): 180 cm</span>
+                <div class="w-full flex items-center justify-between font-mono text-[10px] sm:text-xs font-bold text-graphite px-1 sm:px-2 mt-0.5 sm:mt-1 gap-1">
+                  <span class="bg-white px-1 sm:px-2 py-0.5 border border-graphite/40 shadow-xs" id="svg-cota-width">Ancho (A): 120 cm</span>
+                  <span class="bg-white px-1 sm:px-2 py-0.5 border border-graphite/40 shadow-xs" id="svg-cota-depth">Fondo (B): 65 cm</span>
+                  <span class="bg-white px-1 sm:px-2 py-0.5 border border-graphite/40 shadow-xs" id="svg-cota-height">Alto (C): 180 cm</span>
                 </div>
 
               </div>
@@ -496,90 +492,90 @@
             </div>
 
             <!-- PANEL DE COTAS INTERACTIVAS 100% A MEDIDA (A, B, C) -->
-            <div class="p-4 bg-white border-t border-graphite/15 space-y-3 font-mono text-xs">
+            <div class="p-2.5 sm:p-4 bg-white border-t border-graphite/15 space-y-1.5 sm:space-y-3 font-mono text-xs">
               
               <div class="flex items-center justify-between pb-1 border-b border-graphite/10">
-                <span class="font-bold text-graphite uppercase tracking-wider text-[11px]">COTAS DE FABRICACIÓN (100% A MEDIDA)</span>
-                <span class="text-[10px] bg-wagreen/20 text-[#0a481c] font-bold px-1.5 py-0.5 border border-wagreen/40">AJUSTE EN TIEMPO REAL</span>
+                <span class="font-bold text-graphite uppercase tracking-wider text-[10px] sm:text-[11px]">COTAS DE FABRICACIÓN (100% A MEDIDA)</span>
+                <span class="text-[9px] sm:text-[10px] bg-wagreen/20 text-[#0a481c] font-bold px-1.5 py-0.5 border border-wagreen/40">AJUSTE EN TIEMPO REAL</span>
               </div>
 
               <!-- CONTROL 1: ANCHO DE LA BASE (A) -->
-              <div class="space-y-1">
+              <div class="space-y-0.5 sm:space-y-1">
                 <div class="flex items-center justify-between">
-                  <label for="hood-width-input" class="text-graphite font-bold flex items-center gap-1.5 text-xs">
-                    <span class="w-2 h-2 bg-graphite inline-block"></span>
-                    Ancho de la Base (A):
+                  <label for="hood-width-input" class="text-graphite font-bold flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs">
+                    <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-graphite inline-block"></span>
+                    Ancho Base (A):
                   </label>
                   <div class="flex items-center space-x-1">
                     <input id="hood-width-input" type="number" min="60" max="250" value="120" step="1" 
-                           class="w-16 px-1.5 py-0.5 border border-graphite text-right font-mono font-bold text-xs bg-zinc-page focus:bg-white focus:outline-none">
-                    <span class="text-graphite font-bold text-[11px]">cm</span>
+                           class="w-14 sm:w-16 px-1 py-0.5 border border-graphite text-right font-mono font-bold text-xs bg-zinc-page focus:bg-white focus:outline-none">
+                    <span class="text-graphite font-bold text-[10px] sm:text-[11px]">cm</span>
                   </div>
                 </div>
                 <input id="hood-width-slider" type="range" min="60" max="250" value="120" step="1" 
-                       class="w-full accent-graphite cursor-pointer bg-zinc-accent h-1.5 border border-graphite/20">
+                       class="w-full accent-graphite cursor-pointer bg-zinc-accent h-2 sm:h-1.5 border border-graphite/20 touch-pan-x my-0.5">
               </div>
 
               <!-- CONTROL 2: FONDO DE LA BASE (B) -->
-              <div class="space-y-1">
+              <div class="space-y-0.5 sm:space-y-1">
                 <div class="flex items-center justify-between">
-                  <label for="hood-depth-input" class="text-graphite font-bold flex items-center gap-1.5 text-xs">
-                    <span class="w-2 h-2 bg-graphite inline-block"></span>
-                    Fondo de la Base (B):
+                  <label for="hood-depth-input" class="text-graphite font-bold flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs">
+                    <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-graphite inline-block"></span>
+                    Fondo Base (B):
                   </label>
                   <div class="flex items-center space-x-1">
                     <input id="hood-depth-input" type="number" min="40" max="120" value="65" step="1" 
-                           class="w-16 px-1.5 py-0.5 border border-graphite text-right font-mono font-bold text-xs bg-zinc-page focus:bg-white focus:outline-none">
-                    <span class="text-graphite font-bold text-[11px]">cm</span>
+                           class="w-14 sm:w-16 px-1 py-0.5 border border-graphite text-right font-mono font-bold text-xs bg-zinc-page focus:bg-white focus:outline-none">
+                    <span class="text-graphite font-bold text-[10px] sm:text-[11px]">cm</span>
                   </div>
                 </div>
                 <input id="hood-depth-slider" type="range" min="40" max="120" value="65" step="1" 
-                       class="w-full accent-graphite cursor-pointer bg-zinc-accent h-1.5 border border-graphite/20">
+                       class="w-full accent-graphite cursor-pointer bg-zinc-accent h-2 sm:h-1.5 border border-graphite/20 touch-pan-x my-0.5">
               </div>
 
               <!-- CONTROL 3: ALTO TOTAL REQUERIDO (C) -->
-              <div class="space-y-1">
+              <div class="space-y-0.5 sm:space-y-1">
                 <div class="flex items-center justify-between">
-                  <label for="hood-height-input" class="text-graphite font-bold flex items-center gap-1.5 text-xs">
-                    <span class="w-2 h-2 bg-graphite inline-block"></span>
-                    Alto Total requerido (C):
+                  <label for="hood-height-input" class="text-graphite font-bold flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs">
+                    <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-graphite inline-block"></span>
+                    Alto Total (C):
                   </label>
                   <div class="flex items-center space-x-1">
                     <input id="hood-height-input" type="number" min="80" max="300" value="180" step="1" 
-                           class="w-16 px-1.5 py-0.5 border border-graphite text-right font-mono font-bold text-xs bg-zinc-page focus:bg-white focus:outline-none">
-                    <span class="text-graphite font-bold text-[11px]">cm</span>
+                           class="w-14 sm:w-16 px-1 py-0.5 border border-graphite text-right font-mono font-bold text-xs bg-zinc-page focus:bg-white focus:outline-none">
+                    <span class="text-graphite font-bold text-[10px] sm:text-[11px]">cm</span>
                   </div>
                 </div>
                 <input id="hood-height-slider" type="range" min="80" max="300" value="180" step="1" 
-                       class="w-full accent-graphite cursor-pointer bg-zinc-accent h-1.5 border border-graphite/20">
+                       class="w-full accent-graphite cursor-pointer bg-zinc-accent h-2 sm:h-1.5 border border-graphite/20 touch-pan-x my-0.5">
               </div>
 
               <!-- Selector de Material -->
-              <div class="pt-1">
-                <span class="text-[11px] text-graphite-light block mb-1.5 font-bold">MATERIAL / TERMINACIÓN:</span>
-                <div class="grid grid-cols-3 gap-1.5 text-center text-[10px]">
-                  <button type="button" data-hood-mat="Zincalum 0.5mm" class="border border-graphite bg-graphite/10 p-1.5 font-bold">
+              <div class="pt-0.5 sm:pt-1">
+                <span class="text-[10px] sm:text-[11px] text-graphite-light block mb-1 font-bold">MATERIAL / TERMINACIÓN:</span>
+                <div class="grid grid-cols-3 gap-1 sm:gap-1.5 text-center text-[10px]">
+                  <button type="button" data-hood-mat="Zincalum 0.5mm" class="border border-graphite bg-graphite/10 p-1 sm:p-1.5 font-bold">
                     Zincalum 0.5
                   </button>
-                  <button type="button" data-hood-mat="Galvanizado 0.6mm" class="border border-graphite/30 bg-white p-1.5 hover:border-graphite">
+                  <button type="button" data-hood-mat="Galvanizado 0.6mm" class="border border-graphite/30 bg-white p-1 sm:p-1.5 hover:border-graphite">
                     Galvanizado 0.6
                   </button>
-                  <button type="button" data-hood-mat="Prepintado Negro 0.5mm" class="border border-graphite/30 bg-white p-1.5 hover:border-graphite">
+                  <button type="button" data-hood-mat="Prepintado Negro 0.5mm" class="border border-graphite/30 bg-white p-1 sm:p-1.5 hover:border-graphite">
                     Prepintado Negro
                   </button>
                 </div>
               </div>
 
               <!-- Ficha de cotización instantánea con WhatsApp -->
-              <div class="pt-2 border-t border-dashed border-graphite/20">
-                <div class="text-[10px] text-graphite/70 mb-2 truncate font-mono" id="hood-summary-specs">
+              <div class="pt-1.5 sm:pt-2 border-t border-dashed border-graphite/20">
+                <div class="text-[10px] text-graphite/70 mb-1.5 sm:mb-2 truncate font-mono" id="hood-summary-specs">
                   Ancho: 120cm | Fondo: 65cm | Alto: 180cm | Zincalum 0.5mm
                 </div>
                 <a id="hood-whatsapp-cta" 
                    href="#" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   class="w-full py-2.5 px-3 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs flex items-center justify-center space-x-2 border border-[#138a3c] transition-colors shadow-xs active:translate-y-0.5">
+                   class="w-full py-2 sm:py-2.5 px-3 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs flex items-center justify-center space-x-2 border border-[#138a3c] transition-colors shadow-xs active:translate-y-0.5">
                   <span>Cotizar esta Campana con estas Medidas</span>
                   <span>→</span>
                 </a>
@@ -647,7 +643,7 @@
               <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/techumbres.jpg" 
                      alt="Trabajo real en taller: Remates de Techumbre y Caballetes"
-                     class="w-full h-full object-cover filter grayscale contrast-125 brightness-95 group-hover/ficha:grayscale-0 group-hover:grayscale-0 transition-all duration-500"
+                     class="w-full h-full object-cover md:filter md:grayscale md:contrast-125 md:hover:grayscale-0 transition-all duration-500"
                      loading="lazy">
                 <div class="absolute bottom-1.5 right-1.5 bg-[#1E2022]/85 text-white font-mono text-[9px] px-2 py-0.5 pointer-events-none tracking-widest uppercase">
                   Taller Los Cerezos · El Quisco
@@ -713,7 +709,7 @@
               <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/campana-quincho.jpg" 
                      alt="Trabajo real en taller: Campana de Quincho con tiro y extractor"
-                     class="w-full h-full object-cover filter grayscale contrast-125 brightness-95 group-hover/ficha:grayscale-0 group-hover:grayscale-0 transition-all duration-500"
+                     class="w-full h-full object-cover md:filter md:grayscale md:contrast-125 md:hover:grayscale-0 transition-all duration-500"
                      loading="lazy">
                 <div class="absolute bottom-1.5 right-1.5 bg-[#1E2022]/85 text-white font-mono text-[9px] px-2 py-0.5 pointer-events-none tracking-widest uppercase">
                   Taller Los Cerezos · El Quisco
@@ -775,7 +771,7 @@
               <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/ductos-ventilacion.jpg" 
                      alt="Trabajo real en taller: Ductos cilíndricos y codos en gajos"
-                     class="w-full h-full object-cover filter grayscale contrast-125 brightness-95 group-hover/ficha:grayscale-0 group-hover:grayscale-0 transition-all duration-500"
+                     class="w-full h-full object-cover md:filter md:grayscale md:contrast-125 md:hover:grayscale-0 transition-all duration-500"
                      loading="lazy">
                 <div class="absolute bottom-1.5 right-1.5 bg-[#1E2022]/85 text-white font-mono text-[9px] px-2 py-0.5 pointer-events-none tracking-widest uppercase">
                   Taller Los Cerezos · El Quisco
@@ -841,7 +837,7 @@
               <div class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/gabinetes-gas.jpg" 
                      alt="Trabajo real en taller: Gabinete de Gas GLP reglamentario"
-                     class="w-full h-full object-cover filter grayscale contrast-125 brightness-95 group-hover/ficha:grayscale-0 group-hover:grayscale-0 transition-all duration-500"
+                     class="w-full h-full object-cover md:filter md:grayscale md:contrast-125 md:hover:grayscale-0 transition-all duration-500"
                      loading="lazy">
                 <div class="absolute bottom-1.5 right-1.5 bg-[#1E2022]/85 text-white font-mono text-[9px] px-2 py-0.5 pointer-events-none tracking-widest uppercase">
                   Taller Los Cerezos · El Quisco

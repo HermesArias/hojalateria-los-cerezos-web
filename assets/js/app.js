@@ -133,6 +133,12 @@ function setupDimensionControl(sliderId, inputId, min, max, onChange) {
     onChange(val);
   });
 
+  slider.addEventListener("change", (e) => {
+    const val = sanitizeDimension(e.target.value, min, max);
+    input.value = val;
+    onChange(val);
+  });
+
   input.addEventListener("input", (e) => {
     const val = sanitizeDimension(e.target.value, min, max);
     slider.value = val;
