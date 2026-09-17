@@ -509,12 +509,16 @@
             <!-- PANEL DE COTAS INTERACTIVAS 100% A MEDIDA (A, B, C) -->
             <div class="p-2.5 sm:p-4 bg-white border-t border-graphite/15 space-y-1.5 sm:space-y-3 font-mono text-xs">
 
-              <div class="flex items-center justify-between pb-1 border-b border-graphite/10">
-                <span class="font-bold text-graphite uppercase tracking-wider text-[10px] sm:text-[11px]">COTAS DE
-                  FABRICACIÓN (100% A MEDIDA)</span>
-                <span
-                  class="text-[9px] sm:text-[10px] bg-wagreen/20 text-[#0a481c] font-bold px-1.5 py-0.5 border border-wagreen/40">AJUSTE
-                  EN TIEMPO REAL</span>
+              <div class="pb-1.5 border-b border-graphite/10">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="font-bold text-graphite uppercase tracking-wider text-[10px] sm:text-[11px]">COTAS DE
+                    FABRICACIÓN (100% A MEDIDA)</span>
+                  <span
+                    class="text-[9px] sm:text-[10px] bg-graphite/10 text-graphite font-bold px-1.5 py-0.5 border border-graphite/20">ESQUEMA EDUCATIVO</span>
+                </div>
+                <p class="text-[11px] text-graphite-light leading-snug font-sans">
+                  Usa este esquema para identificar las cotas principales que requerimos para la fabricación de tu campana de quincho a medida.
+                </p>
               </div>
 
               <!-- CONTROL 1: ANCHO DE LA BASE (A) -->
@@ -591,17 +595,15 @@
                 </div>
               </div>
 
-              <!-- Ficha de cotización instantánea con WhatsApp -->
-              <div class="pt-1.5 sm:pt-2 border-t border-dashed border-graphite/20">
-                <div class="text-[10px] text-graphite/70 mb-1.5 sm:mb-2 truncate font-mono" id="hood-summary-specs">
+              <!-- Ficha técnica orientativa y Botón de Navegación a Mesa de Trabajo -->
+              <div class="pt-1.5 sm:pt-2 border-t border-dashed border-graphite/20 space-y-2">
+                <div class="text-[10px] text-graphite/70 truncate font-mono" id="hood-summary-specs">
                   Ancho: 120cm | Fondo: 65cm | Alto: 180cm | Galvanizado 0.5mm
                 </div>
-                <a id="hood-whatsapp-cta"
-                  href="https://wa.me/56933324024?text=Hola%20Hojalater%C3%ADa%20Los%20Cerezos%2C%20necesito%20cotizar%20la%20fabricaci%C3%B3n%20de%20un%20producto%20a%20medida.%20Aqu%C3%AD%20les%20detallo%20lo%20que%20necesito%3A%0A%0A"
-                  target="_blank" rel="noopener noreferrer"
-                  class="w-full py-2 sm:py-2.5 px-3 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-mono font-bold text-xs flex items-center justify-center space-x-2 border border-[#138a3c] transition-colors shadow-xs active:translate-y-0.5">
-                  <span>Cotizar Campana con estas Medidas</span>
-                  <span>→</span>
+                <a id="hood-goto-workbench" href="#mesa-de-trabajo"
+                  class="w-full py-2.5 px-3 bg-graphite hover:bg-graphite-light text-white font-mono font-bold text-xs flex items-center justify-center space-x-2 border border-graphite transition-all shadow-xs active:translate-y-0.5 cursor-pointer">
+                  <span>Entendido, quiero describir mi proyecto</span>
+                  <span>➡️</span>
                 </a>
               </div>
 

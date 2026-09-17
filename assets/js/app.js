@@ -101,6 +101,18 @@ function initHoodInteractiveBlueprint() {
   // 3. Botón "Plano vs Realidad" (Ver fabricación real) con transición suave de 300ms
   initRealViewToggle();
 
+  // 4. Navegación fluida hacia la Mesa de Trabajo (scroll suave)
+  const gotoWorkbenchBtn = document.getElementById("hood-goto-workbench");
+  if (gotoWorkbenchBtn) {
+    gotoWorkbenchBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetSection = document.getElementById("mesa-de-trabajo");
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
+
   // Render inicial
   updateHoodBlueprint();
 }
@@ -214,7 +226,6 @@ function updateHoodBlueprint() {
   const depthLabel = document.getElementById("svg-cota-depth");
   const heightLabel = document.getElementById("svg-cota-height");
   const summarySpecs = document.getElementById("hood-summary-specs");
-  const quoteCtaBtn = document.getElementById("hood-whatsapp-cta");
 
   if (widthLabel) widthLabel.textContent = `Ancho (A): ${hoodState.width} cm`;
   if (depthLabel) depthLabel.textContent = `Fondo (B): ${hoodState.depth} cm`;
@@ -404,14 +415,6 @@ function updateHoodBlueprint() {
   }
   if (dimHArrB) {
     dimHArrB.setAttribute("d", `M 372,${yBottom - 7} L 375,${yBottom} L 378,${yBottom - 7}`);
-  }
-
-  // ================= ENLACE A WHATSAPP SÚPER ABIERTO Y DIRECTO =================
-  if (quoteCtaBtn) {
-    const message = encodeURIComponent(
-      "Hola Hojalatería Los Cerezos, necesito cotizar la fabricación de un producto a medida. Aquí les detallo lo que necesito:\n\n"
-    );
-    quoteCtaBtn.href = `https://wa.me/${WORKSHOP_PHONE}?text=${message}`;
   }
 }
 
