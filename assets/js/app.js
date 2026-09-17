@@ -13,7 +13,7 @@ const hoodState = {
   width: 120,    // cm (Ancho de la Base A)
   depth: 65,     // cm (Fondo de la Base B)
   height: 180,   // cm (Alto Total C)
-  material: "Zincalum 0.5mm"
+  material: "Galvanizado 0.5mm"
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -39,22 +39,22 @@ function initWorkshopStatus() {
 
   let isOpen = false;
 
-  // Lun a Vie: 08:30 (510 min) a 18:30 (1110 min)
+  // Lun a Vie: 09:00 (540 min) a 19:00 (1140 min)
   if (day >= 1 && day <= 5) {
-    if (currentMinutes >= 510 && currentMinutes < 1110) {
+    if (currentMinutes >= 540 && currentMinutes < 1140) {
       isOpen = true;
     }
   } 
-  // Sábado: 09:00 (540 min) a 14:00 (840 min)
+  // Sábado: 09:00 (540 min) a 17:00 (1020 min)
   else if (day === 6) {
-    if (currentMinutes >= 540 && currentMinutes < 840) {
+    if (currentMinutes >= 540 && currentMinutes < 1020) {
       isOpen = true;
     }
   }
 
   if (isOpen) {
     statusBadge.className = "inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse mr-2";
-    statusText.textContent = "TALLER OPERATIVO (CORTE Y PLEGADO ACTIVO)";
+    statusText.textContent = "TALLER OPERATIVO (FABRICACIÓN ACTIVA)";
   } else {
     statusBadge.className = "inline-block w-2.5 h-2.5 rounded-full bg-amber-400 mr-2";
     statusText.textContent = "TALLER CERRADO · RECEPCIÓN WHATSAPP 24/7";
@@ -67,7 +67,7 @@ function initWorkshopStatus() {
  */
 function initHoodInteractiveBlueprint() {
   // 1. Selector de Material (Validación por lista blanca segura)
-  const ALLOWED_MATERIALS = ["Zincalum 0.5mm", "Galvanizado 0.6mm", "Prepintado Negro 0.5mm"];
+  const ALLOWED_MATERIALS = ["Galvanizado 0.5mm", "Zincalum 0.5mm", "Prepintado Negro 0.5mm"];
   const materialButtons = document.querySelectorAll("[data-hood-mat]");
   materialButtons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -406,10 +406,10 @@ function updateHoodBlueprint() {
     dimHArrB.setAttribute("d", `M 372,${yBottom - 7} L 375,${yBottom} L 378,${yBottom - 7}`);
   }
 
-  // ================= ENLACE A WHATSAPP EXACTO SOLICITADO =================
+  // ================= ENLACE A WHATSAPP SÚPER ABIERTO Y DIRECTO =================
   if (quoteCtaBtn) {
     const message = encodeURIComponent(
-      `Hola Hojalatería Los Cerezos, quiero cotizar una Campana de Quincho a medida con las siguientes dimensiones: Ancho: ${hoodState.width}cm, Fondo: ${hoodState.depth}cm, Alto: ${hoodState.height}cm, en material ${hoodState.material}.`
+      "Hola Hojalatería Los Cerezos, necesito cotizar la fabricación de un producto a medida. Aquí les detallo lo que necesito:\n\n"
     );
     quoteCtaBtn.href = `https://wa.me/${WORKSHOP_PHONE}?text=${message}`;
   }
@@ -420,12 +420,9 @@ function updateHoodBlueprint() {
  */
 function initCustomQuoteModalOrLinks() {
   document.querySelectorAll("[data-quote-product]").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const rawProduct = btn.getAttribute("data-quote-product") || "Pieza en zinc";
-      // Sanitizar texto para evitar inyecciones
-      const product = rawProduct.replace(/[<>"'&]/g, '').trim();
+    btn.addEventListener("click", () => {
       const defaultMsg = encodeURIComponent(
-        `Hola Hojalatería Los Cerezos! Quisiera cotizar ${product} a medida para retirar en el taller de Los Cerezos 053, El Quisco.\nMis medidas o detalles son:`
+        "Hola Hojalatería Los Cerezos, necesito cotizar la fabricación de un producto a medida. Aquí les detallo lo que necesito:\n\n"
       );
       // Seguridad: mitigación estricta contra Reverse Tabnabbing
       window.open(`https://wa.me/${WORKSHOP_PHONE}?text=${defaultMsg}`, "_blank", "noopener,noreferrer");

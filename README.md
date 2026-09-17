@@ -1,6 +1,6 @@
 # Hojalatería Los Cerezos · Sitio Web Oficial
 
-> Taller de hojalatería técnica, corte y plegado de zinc a medida en El Quisco (Algarrobo, El Quisco y El Tabo, Región de Valparaíso, Chile).
+> Taller de hojalatería técnica, corte y fabricación a medida en zinc en El Quisco (Algarrobo, El Quisco y El Tabo, Región de Valparaíso, Chile).
 
 ## 🛠️ Tecnologías y Características
 - **Frontend**: HTML5 Semántico + JavaScript Vanilla
