@@ -162,5 +162,21 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
+/* ==========================================================================
+   MICRO-ANIMACIÓN FLECHA DESTACADA (BOTÓN CLIMATIZACIÓN)
+   ========================================================================== */
+@keyframes arrow-nudge {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+.animate-arrow-nudge {
+  display: inline-block;
+  animation: arrow-nudge 1.2s ease-in-out infinite;
+}
 
 
