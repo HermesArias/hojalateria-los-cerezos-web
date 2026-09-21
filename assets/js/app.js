@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function initWorkshopStatus() {
   const statusBadge = document.getElementById("workshop-status-indicator");
   const statusText = document.getElementById("workshop-status-text");
-  if (!statusBadge || !statusText) return;
+  const mobileStatusText = document.getElementById("mobile-status-text");
 
   const now = new Date();
   const day = now.getDay(); // 0: Dom, 1: Lun, ..., 6: Sáb
@@ -39,7 +39,8 @@ function initWorkshopStatus() {
 
   let isOpen = false;
 
-  // Lun a Vie: 09:00 (540 min) a 19:00 (1140 min)
+  // Horario extraído de la sección de horarios del taller:
+  // Lunes a Viernes: 09:00 (540 min) a 19:00 (1140 min)
   if (day >= 1 && day <= 5) {
     if (currentMinutes >= 540 && currentMinutes < 1140) {
       isOpen = true;
@@ -51,13 +52,16 @@ function initWorkshopStatus() {
       isOpen = true;
     }
   }
+  // Domingos y Festivos: Cerrado
 
   if (isOpen) {
-    statusBadge.className = "inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse mr-2";
-    statusText.textContent = "TALLER OPERATIVO (FABRICACIÓN ACTIVA)";
+    if (statusBadge) statusBadge.className = "inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse mr-2";
+    if (statusText) statusText.textContent = "TALLER OPERATIVO (FABRICACIÓN ACTIVA)";
+    if (mobileStatusText) mobileStatusText.textContent = "Hojalatería Los Cerezos | 🟢 Taller Operativo";
   } else {
-    statusBadge.className = "inline-block w-2.5 h-2.5 rounded-full bg-amber-400 mr-2";
-    statusText.textContent = "TALLER CERRADO · RECEPCIÓN WHATSAPP 24/7";
+    if (statusBadge) statusBadge.className = "inline-block w-2.5 h-2.5 rounded-full bg-amber-400 mr-2";
+    if (statusText) statusText.textContent = "TALLER CERRADO · RECEPCIÓN WHATSAPP 24/7";
+    if (mobileStatusText) mobileStatusText.textContent = "Hojalatería Los Cerezos | 🔴 Cerrado - Atendemos por WhatsApp";
   }
 }
 

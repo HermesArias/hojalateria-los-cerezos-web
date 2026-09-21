@@ -180,9 +180,17 @@
   class="bg-blueprint-grid text-graphite font-body antialiased selection:bg-graphite selection:text-white pb-24 md:pb-0">
 
   <!-- =========================================================================
-       BARRA TÉCNICA SUPERIOR (METRIC & WORKSHOP STATUS HEADER)
+       BARRA DE ESTADO FIJA SUPERIOR (MÓVIL EXCLUSIVO: HORARIO Y ESTADO DE TALLER)
        ========================================================================= -->
-  <header class="border-b border-graphite/20 bg-zinc-page/95 backdrop-blur-sm sticky top-0 z-50">
+  <div id="mobile-top-status-bar"
+    class="fixed top-0 left-0 w-full z-50 block md:hidden bg-[#1E2022] text-white text-center py-2 px-3 font-mono text-[11px] sm:text-xs font-medium tracking-wide border-b border-white/10 shadow-sm">
+    <span id="mobile-status-text">Hojalatería Los Cerezos | 🟢 Taller Operativo</span>
+  </div>
+
+  <!-- =========================================================================
+       BARRA TÉCNICA SUPERIOR (DESKTOP - METRIC & WORKSHOP STATUS HEADER)
+       ========================================================================= -->
+  <header class="hidden md:block border-b border-graphite/20 bg-zinc-page/95 backdrop-blur-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-14 font-mono text-xs tracking-wider">
 
@@ -230,7 +238,7 @@
     <div class="cad-cross-tl"></div>
     <div class="cad-cross-tr"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-6 sm:py-10 lg:py-16">
 
       <!-- Ficha de Registro Superior del Plano (Visible sólo en desktop para no retrasar el contenido en celulares) -->
       <div
@@ -371,7 +379,7 @@
 
               <!-- CAPA 1: PLANO TÉCNICO INTERACTIVO SVG -->
               <div id="hood-blueprint-layer"
-                class="w-full flex flex-col items-center justify-center transition-opacity duration-300">
+                class="w-full md:filter md:grayscale md:contrast-125 transition-all duration-500">
 
                 <!-- Cota superior de tiro/ducto rectangular -->
                 <div
@@ -491,7 +499,7 @@
                 class="absolute inset-0 z-20 bg-zinc-sheet opacity-0 pointer-events-none transition-opacity duration-300 flex flex-col justify-center items-center overflow-hidden">
                 <div class="relative w-full h-full flex items-center justify-center bg-graphite/10">
                   <img src="assets/img/campana-real-taller.jpg"
-                    alt="Campana de quincho real fabricada en taller Los Cerezos con sombrerete plano y ducto rectangular"
+                    alt="Campana de quincho real fabricada a medida en taller Los Cerezos, El Quisco"
                     class="w-full h-full object-contain md:object-cover" loading="lazy">
                   <div
                     class="absolute top-2 left-2 bg-[#1E2022]/95 backdrop-blur-xs text-white font-mono text-[10px] px-2.5 py-1 border border-wagreen shadow-md">
@@ -675,7 +683,8 @@
               </div>
               <div
                 class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
-                <img src="assets/img/techumbres.jpg" alt="Trabajo real en taller: Remates de Techumbre y Caballetes"
+                <img src="assets/img/techumbres.jpg"
+                  alt="Remates de techumbre, caballetes y limahoyas fabricados a medida en taller Los Cerezos, El Quisco"
                   class="w-full h-full object-cover md:filter md:grayscale md:contrast-125 md:hover:grayscale-0 transition-all duration-500"
                   loading="lazy">
                 <div
@@ -750,7 +759,7 @@
               <div
                 class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/campana-quincho.jpg"
-                  alt="Trabajo real en taller: Campana de Quincho con tiro y extractor"
+                  alt="Campana de quincho con tiro y extractor fabricada en zinc en taller Los Cerezos, El Quisco"
                   class="w-full h-full object-cover md:filter md:grayscale md:contrast-125 md:hover:grayscale-0 transition-all duration-500"
                   loading="lazy">
                 <div
@@ -819,7 +828,7 @@
               <div
                 class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
                 <img src="assets/img/ductos-ventilacion.jpg"
-                  alt="Trabajo real en taller: Ductos cilíndricos y codos en gajos"
+                  alt="Ductos cilíndricos de ventilación y codos en gajos fabricados en taller Los Cerezos, El Quisco"
                   class="w-full h-full object-cover md:filter md:grayscale md:contrast-125 md:hover:grayscale-0 transition-all duration-500"
                   loading="lazy">
                 <div
@@ -893,7 +902,8 @@
               </div>
               <div
                 class="relative overflow-hidden bg-zinc-sheet aspect-[16/9] max-h-44 sm:max-h-56 md:max-h-none w-full">
-                <img src="assets/img/gabinetes-gas.jpg" alt="Trabajo real en taller: Gabinete de Gas GLP reglamentario"
+                <img src="assets/img/gabinetes-gas.jpg"
+                  alt="Gabinete de gas GLP reglamentario SEC fabricado en zinc en taller Los Cerezos, El Quisco"
                   class="w-full h-full object-cover md:filter md:grayscale md:contrast-125 md:hover:grayscale-0 transition-all duration-500"
                   loading="lazy">
                 <div
@@ -1023,12 +1033,12 @@
               <!-- Foto A Recortada -->
               <div class="relative overflow-hidden aspect-[4/3] bg-zinc-sheet border border-graphite/15">
                 <img src="assets/img/croquis-bosquejo-taller.jpg"
-                  alt="Bosquejo a mano alzada con cotas sobre papel milimetrado arrugado"
+                  alt="Croquis y dibujo a mano alzada recibido para fabricación en taller Los Cerezos, El Quisco"
                   class="w-full h-full object-cover filter contrast-105 brightness-95 hover:scale-105 transition-transform duration-500"
                   loading="lazy">
                 <div
                   class="absolute bottom-1.5 left-1.5 bg-[#1E2022]/85 backdrop-blur-xs text-white font-mono text-[9px] px-2 py-0.5 pointer-events-none tracking-wide">
-                  Cualquier dibujo con medidas sirve
+                  Taller Los Cerezos · El Quisco
                 </div>
               </div>
 
@@ -1084,7 +1094,7 @@
               <!-- Foto B: Pieza Terminada -->
               <div class="relative overflow-hidden aspect-[4/3] bg-zinc-sheet border border-graphite/20">
                 <img src="assets/img/pieza-zinc-terminada.jpg"
-                  alt="Pieza final ya fabricada en zinc galvanizado limpia en el taller Los Cerezos"
+                  alt="Pieza final terminada a medida en zinc galvanizado en taller Los Cerezos, El Quisco"
                   class="w-full h-full object-cover filter contrast-110 brightness-100 hover:scale-105 transition-transform duration-500"
                   loading="lazy">
                 <div

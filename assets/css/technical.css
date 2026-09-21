@@ -132,12 +132,23 @@
 }
 
 /* ==========================================================================
-   BARRA FIJA INFERIOR MÓVIL (Z-INDEX Y STACKING CONTEXT PRIORITARIO)
+   BARRA FIJA INFERIOR Y SUPERIOR MÓVIL (Z-INDEX Y STACKING CONTEXT PRIORITARIO)
    ========================================================================== */
-.fixed.bottom-0 {
+.fixed.bottom-0,
+.fixed.top-0 {
   z-index: 50 !important;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+}
+
+/* ==========================================================================
+   PLANO INTERACTIVO CAD (CENTRADOR Y SOPORTE DE FILTROS)
+   ========================================================================== */
+#hood-blueprint-layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ==========================================================================
@@ -150,5 +161,6 @@
   transform: rotate(0deg) scale(1.015);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
+
 
 
