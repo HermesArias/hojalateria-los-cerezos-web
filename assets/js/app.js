@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHoodInteractiveBlueprint();
   initCopyAddress();
   initCustomQuoteModalOrLinks();
+  initClimatizacionModal();
 });
 
 /**
@@ -456,5 +457,53 @@ function initCopyAddress() {
         }, 2500);
       }
     });
+  });
+}
+
+/**
+ * Modal Interactivo: Climatización Atlantis Ltda. (Alianza Familiar)
+ */
+function initClimatizacionModal() {
+  const modal = document.getElementById("climatizacion-modal");
+  const openBtn = document.getElementById("open-climatizacion-modal-btn");
+  const closeBtn = document.getElementById("close-climatizacion-modal-btn");
+  const cancelBtn = document.getElementById("cancel-climatizacion-modal-btn");
+
+  if (!modal || !openBtn) return;
+
+  function openModal() {
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closeModal() {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  openBtn.addEventListener("click", openModal);
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeModal);
+  }
+
+  if (cancelBtn) {
+    cancelBtn.addEventListener("click", closeModal);
+  }
+
+  // Cerrar al hacer clic en el fondo semitransparente fuera de la tarjeta
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Cerrar con la tecla Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+      closeModal();
+    }
   });
 }

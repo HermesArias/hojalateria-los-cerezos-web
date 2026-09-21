@@ -943,6 +943,31 @@
 
       </div>
 
+      <!-- BOTÓN DESTACADO: CLIMATIZACIÓN ATLANTIS LTDA. (ALIANZA FAMILIAR) -->
+      <div class="mt-8 pt-6 border-t border-graphite/20 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/70 p-4 sm:p-5 border border-graphite/20 shadow-xs">
+        <div class="flex items-center space-x-3 text-left w-full sm:w-auto">
+          <div class="w-10 h-10 bg-[#1E2022] text-white flex items-center justify-center flex-shrink-0 text-lg border border-graphite font-mono">
+            ❄️
+          </div>
+          <div>
+            <div class="font-mono text-[10px] text-graphite/60 uppercase font-bold tracking-wider">
+              ALIANZA FAMILIAR // CLIMATIZACIÓN
+            </div>
+            <div class="font-condensed font-black text-lg sm:text-xl text-graphite uppercase tracking-tight">
+              Instalación y Mantención de Aire Acondicionado
+            </div>
+          </div>
+        </div>
+
+        <button id="open-climatizacion-modal-btn" type="button"
+          class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 py-3 bg-white hover:bg-[#1E2022] hover:text-white text-graphite font-mono font-bold text-xs sm:text-[13px] border border-graphite transition-all duration-200 active:scale-95 shadow-xs cursor-pointer group">
+          <span>❄️ ¿Necesitas Aire Acondicionado? Conoce Climatización Atlantis Ltda.</span>
+          <svg class="w-4 h-4 fill-none stroke-current stroke-2 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </button>
+      </div>
+
     </div>
   </section>
 
@@ -1412,6 +1437,90 @@
       </svg>
       <span>Cotizar por WhatsApp</span>
     </a>
+  </div>
+
+  <!-- =========================================================================
+       MODAL EMERGENTE: CLIMATIZACIÓN ATLANTIS LTDA. (ALIANZA FAMILIAR)
+       ========================================================================= -->
+  <div id="climatizacion-modal"
+    class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-[#1E2022]/80 backdrop-blur-xs overflow-y-auto"
+    role="dialog" aria-modal="true" aria-labelledby="climatizacion-modal-title">
+    
+    <!-- Tarjeta Blanca Industrial -->
+    <div id="climatizacion-modal-card"
+      class="relative w-full max-w-lg bg-white border-2 border-[#1E2022] shadow-[8px_8px_0px_#1E2022] p-5 sm:p-7 font-mono text-xs my-auto">
+
+      <!-- Botón Cerrar 'X' en la esquina superior derecha -->
+      <button id="close-climatizacion-modal-btn" type="button"
+        class="absolute top-3.5 right-3.5 w-8 h-8 flex items-center justify-center border border-graphite text-graphite hover:bg-[#1E2022] hover:text-white transition-colors cursor-pointer text-sm font-bold active:scale-95"
+        aria-label="Cerrar modal">
+        ✕
+      </button>
+
+      <!-- Badge de Alianza Familiar -->
+      <div class="inline-flex items-center gap-1.5 bg-[#1E2022] text-white px-2.5 py-1 text-[11px] font-bold tracking-wider uppercase mb-3.5">
+        <span>❄️</span>
+        <span>ALIANZA FAMILIAR // SERVICIO TÉCNICO</span>
+      </div>
+
+      <!-- Título: Nombre de la Empresa -->
+      <h3 id="climatizacion-modal-title"
+        class="text-2xl sm:text-3xl font-condensed font-black text-graphite uppercase tracking-tight leading-tight mb-2">
+        Climatización Atlantis Ltda.
+      </h3>
+
+      <!-- Especialidad -->
+      <div class="font-bold text-graphite text-sm sm:text-base border-l-2 border-wagreen pl-3 py-0.5 mb-3 font-sans">
+        Venta, Instalación y Mantención de Equipos de Aire Acondicionado
+      </div>
+
+      <!-- Descripción Breve -->
+      <p class="text-graphite-light text-xs sm:text-sm font-sans leading-relaxed mb-5">
+        En alianza familiar con Hojalatería Los Cerezos, entregamos soluciones integrales de climatización para hogares y empresas del Litoral Central.
+      </p>
+
+      <!-- Ficha técnica de contacto rápido -->
+      <div class="bg-zinc-page border border-graphite/20 p-3 sm:p-3.5 mb-5 space-y-1.5 text-[11px]">
+        <div class="flex items-center justify-between">
+          <span class="text-graphite-light">Servicios:</span>
+          <span class="font-bold text-graphite">Venta, Instalación y Mantención</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-graphite-light">Equipos:</span>
+          <span class="font-bold text-graphite">Split Inverter, Comerciales y Residenciales</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-graphite-light">Cobertura:</span>
+          <span class="font-bold text-graphite">El Quisco, Algarrobo, El Tabo y Litoral Central</span>
+        </div>
+        <div class="flex items-center justify-between border-t border-graphite/10 pt-1">
+          <span class="text-graphite-light">Teléfono directo:</span>
+          <a href="tel:+56942359140" class="font-bold text-[#1E2022] hover:underline">+56 9 4235 9140</a>
+        </div>
+      </div>
+
+      <!-- Gran Botón Verde de WhatsApp con Mensaje Pre-llenado -->
+      <a id="climatizacion-whatsapp-btn"
+        href="https://wa.me/56942359140?text=Hola%20Climatizaci%C3%B3n%20Atlantis%2C%20encontr%C3%A9%20su%20contacto%20a%20trav%C3%A9s%20de%20la%20p%C3%A1gina%20web%20de%20la%20Hojalater%C3%ADa%20Los%20Cerezos%20y%20me%20interesa%20cotizar%20un%20servicio%20de%20aire%20acondicionado."
+        target="_blank" rel="noopener noreferrer"
+        class="w-full py-3.5 px-4 bg-wagreen hover:bg-wagreen-dark text-[#063013] font-condensed font-black text-center uppercase tracking-wider text-base sm:text-lg border-2 border-[#138a3c] flex items-center justify-center space-x-2 transition-all shadow-sm active:scale-95">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current flex-shrink-0" viewBox="0 0 24 24">
+          <path
+            d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.764.78 2.795.781h.001c3.182 0 5.768-2.587 5.769-5.767.001-3.182-2.585-5.766-5.77-5.766zm3.385 8.165c-.141.396-.704.757-1.002.799-.297.042-.647.071-2.073-.522-1.748-.727-2.883-2.5-2.97-2.616-.088-.117-.714-.95-.714-1.815 0-.865.452-1.29.613-1.465.161-.176.353-.22.47-.22.118 0 .235.001.338.006.107.005.251-.041.393.3.147.353.5 1.22.544 1.308.044.088.073.191.015.308-.059.117-.088.19-.176.293-.088.103-.186.23-.265.31-.088.087-.18.182-.078.358.103.176.456.753.978 1.218.673.599 1.24.786 1.417.873.176.088.28.074.383-.044.103-.118.441-.515.559-.691.118-.176.235-.147.397-.088.162.059 1.03.486 1.206.574.177.088.294.132.338.206.044.073.044.426-.097.822z" />
+        </svg>
+        <span>Cotizar por WhatsApp</span>
+      </a>
+
+      <!-- Pie del modal con botón de cierre alternativo y teléfono directo -->
+      <div class="mt-3.5 flex items-center justify-between text-[11px] text-graphite-light pt-1">
+        <span>Llamadas: <a href="tel:+56942359140" class="font-bold text-graphite hover:underline">+56 9 4235 9140</a></span>
+        <button id="cancel-climatizacion-modal-btn" type="button"
+          class="hover:text-graphite underline cursor-pointer text-graphite/70">
+          Cerrar ventana
+        </button>
+      </div>
+
+    </div>
   </div>
 
   <!-- Scripts -->
