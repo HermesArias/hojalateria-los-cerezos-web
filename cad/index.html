@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hojalatería CAD Lite | Taller Los Cerezos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="cad-theme">
+
+  <!-- LOCK SCREEN / INTRANET PASSWORD MODAL -->
+  <div class="cad-auth-overlay" id="authOverlay">
+    <div class="cad-auth-card">
+      <div class="auth-icon-wrapper">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#38bdf8" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <div class="auth-badge">USO INTRANET TALLER</div>
+      <h2 class="auth-title">HOJALATERÍA LOS CEREZOS</h2>
+      <p class="auth-subtitle">Acceso restringido para personal técnico y presupuestos. Ingrese la clave de seguridad para continuar.</p>
+
+      <form id="authForm" class="auth-form" onsubmit="return false;">
+        <div class="auth-field">
+          <label for="authPassword">Contraseña de Acceso:</label>
+          <div class="auth-input-group">
+            <input type="password" id="authPassword" class="auth-input" placeholder="Ingrese contraseña..." autocomplete="current-password" autofocus>
+            <button type="button" id="btnToggleAuthPwd" class="btn-toggle-pwd" title="Mostrar/Ocultar contraseña">
+              <svg id="eyeIconOpen" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <svg id="eyeIconClosed" class="hidden" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+            </button>
+          </div>
+        </div>
+
+        <div id="authErrorMsg" class="auth-error hidden">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span>Contraseña incorrecta. Acceso denegado.</span>
+        </div>
+
+        <button type="submit" id="btnSubmitAuth" class="btn btn-primary auth-submit-btn">
+          Ingresar al Trazador CAD
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <a href="../index.html" class="auth-back-link">← Volver al sitio web principal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP BAR / HEADER -->
+  <header class="cad-header">
+    <div class="header-left">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-title">HOJALATERÍA CAD LITE</span>
+          <span class="brand-subtitle">Taller Los Cerezos · Trazado & Presupuestos</span>
+        </div>
+      </div>
+      <div class="project-title-wrapper">
+        <input type="text" id="projectTitle" class="project-title-input" value="Perfil-Canaleta-01" title="Clic para renombrar proyecto">
+      </div>
+    </div>
+
+    <div class="header-center">
+      <!-- Quick History & Presets -->
+      <div class="btn-group">
+        <button id="btnUndo" class="btn-icon" title="Deshacer (Ctrl + Z)" disabled>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path></svg>
+        </button>
+        <button id="btnRedo" class="btn-icon" title="Rehacer (Ctrl + Y)" disabled>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"></path><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3L21 13"></path></svg>
+        </button>
+      </div>
+
+      <div class="header-separator"></div>
+
+      <button id="btnPresets" class="btn btn-secondary" title="Insertar perfiles estándar de hojalatería">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        <span>Perfiles Típicos</span>
+      </button>
+
+      <button id="btnCalcDev" class="btn btn-secondary" title="Calcular desarrollo de chapa">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M8 10h.01"></path><path d="M12 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path></svg>
+        <span>Desarrollo Zinc</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <button id="btnNew" class="btn btn-secondary" title="Nuevo plano">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+        <span>Nuevo</span>
+      </button>
+
+      <button id="btnLoadJson" class="btn btn-secondary" title="Abrir archivo JSON">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+        <span>Abrir</span>
+      </button>
+      <input type="file" id="jsonFileInput" accept=".json" style="display:none;">
+
+      <button id="btnSaveJson" class="btn btn-secondary" title="Guardar proyecto en JSON">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+        <span>Guardar JSON</span>
+      </button>
+
+      <button id="btnExportPng" class="btn btn-primary" title="Exportar plano en alta resolución para presupuestos">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+        <span>Exportar Imagen</span>
+      </button>
+
+      <button id="btnLogoutAuth" class="btn btn-secondary btn-lock-header" title="Bloquear sesión Intranet">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <span>Bloquear</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CAD WORKSPACE -->
+  <main class="cad-main">
+    
+    <!-- LEFT TOOLBAR (TOOLBOX) -->
+    <aside class="cad-toolbox" id="toolbox">
+      <div class="tool-group">
+        <div class="tool-group-title">Edición</div>
+        <button class="tool-btn active" data-tool="select" title="Seleccionar / Mover (V o Barra)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l7 18 3-7 7-3L3 3z"></path></svg>
+          <span class="tool-tip">Seleccionar (V)</span>
+        </button>
+        <button class="tool-btn" data-tool="pan" title="Desplazar Lienzo (Mano / Rueda central)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 11V6a2 2 0 0 0-4 0v4"></path><path d="M14 10V4a2 2 0 0 0-4 0v6"></path><path d="M10 10.5V6a2 2 0 0 0-4 0v8"></path><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg>
+          <span class="tool-tip">Mover vista (H)</span>
+        </button>
+      </div>
+
+      <div class="toolbox-divider"></div>
+
+      <div class="tool-group">
+        <div class="tool-group-title">Geometría</div>
+        <button class="tool-btn" data-tool="line" title="Línea Continua de Chapa (L)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="20" x2="20" y2="4"></line><circle cx="4" cy="20" r="2.5" fill="currentColor"></circle><circle cx="20" cy="4" r="2.5" fill="currentColor"></circle></svg>
+          <span class="tool-tip">Línea continua (L)</span>
+        </button>
+        <button class="tool-btn" data-tool="dashed" title="Línea Segmentada / Doblez Oculto (K)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="20" x2="7" y2="16" stroke-dasharray="3,3"></line><line x1="9" y1="14" x2="13" y2="10" stroke-dasharray="3,3"></line><line x1="15" y1="8" x2="21" y2="2" stroke-dasharray="3,3"></line><circle cx="3" cy="20" r="2" fill="currentColor"></circle><circle cx="21" cy="2" r="2" fill="currentColor"></circle></svg>
+          <span class="tool-tip">Línea segmentada (K)</span>
+        </button>
+        <button class="tool-btn" data-tool="arc" title="Arco de Curvatura / Doblez (A)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20 A 16 16 0 0 1 20 4"></path><circle cx="4" cy="20" r="2.5" fill="currentColor"></circle><circle cx="20" cy="4" r="2.5" fill="currentColor"></circle></svg>
+          <span class="tool-tip">Arco (A)</span>
+        </button>
+        <button class="tool-btn" data-tool="circle" title="Círculo / Tubo / Bajada (C)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="2" fill="currentColor"></circle></svg>
+          <span class="tool-tip">Círculo (C)</span>
+        </button>
+      </div>
+
+      <div class="toolbox-divider"></div>
+
+      <div class="tool-group">
+        <div class="tool-group-title">Anotaciones</div>
+        <button class="tool-btn" data-tool="dimension" title="Cota con Medida Personalizada (D)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="5" x2="3" y2="19"></line><line x1="21" y1="5" x2="21" y2="19"></line><line x1="3" y1="12" x2="21" y2="12"></line><polygon points="6,9 3,12 6,15" fill="currentColor"></polygon><polygon points="18,9 21,12 18,15" fill="currentColor"></polygon></svg>
+          <span class="tool-tip">Cota de Medida (D)</span>
+        </button>
+        <button class="tool-btn" data-tool="leader" title="Flecha con Nota Técnica (F)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20 L 14 10 L 20 10"></path><polygon points="4,20 8,17 7,16" fill="currentColor"></polygon></svg>
+          <span class="tool-tip">Flecha de Nota (F)</span>
+        </button>
+        <button class="tool-btn" data-tool="text" title="Texto de Especificación (T)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="12" y1="4" x2="12" y2="20"></line><line x1="9" y1="20" x2="15" y2="20"></line></svg>
+          <span class="tool-tip">Texto (T)</span>
+        </button>
+      </div>
+
+      <div class="toolbox-divider"></div>
+
+      <div class="tool-group">
+        <div class="tool-group-title">Modificar</div>
+        <button class="tool-btn" data-tool="split" title="Dividir / Cortar Segmento (X)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
+          <span class="tool-tip">Cortar/Dividir (X)</span>
+        </button>
+        <button id="btnDuplicate" class="tool-btn" title="Duplicar Selección (Ctrl + D)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span class="tool-tip">Duplicar</span>
+        </button>
+        <button id="btnDeleteSelected" class="tool-btn danger" title="Eliminar Seleccionado (Supr / Backspace)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          <span class="tool-tip">Borrar (Supr)</span>
+        </button>
+      </div>
+
+      <div class="toolbox-footer">
+        <button id="btnFitScreen" class="tool-btn" title="Encuadrar todo en pantalla (Z)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+          <span class="tool-tip">Encuadrar</span>
+        </button>
+        <button id="btnHelp" class="tool-btn" title="Atajos de teclado y ayuda">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span class="tool-tip">Ayuda</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CENTER CANVAS AREA -->
+    <div class="cad-canvas-container" id="canvasContainer">
+      <canvas id="cadCanvas"></canvas>
+      
+      <!-- Interactive floating context badge / prompt indicator -->
+      <div id="canvasPrompt" class="canvas-prompt-badge">
+        <span id="promptAction">Haga clic para iniciar el trazo</span>
+        <kbd id="promptKey">Esc para cancelar</kbd>
+      </div>
+
+      <!-- Quick Zoom Controls Overlay -->
+      <div class="zoom-controls">
+        <button id="btnZoomIn" title="Acercar (+)">+</button>
+        <span id="zoomDisplay" title="Nivel de zoom">100%</span>
+        <button id="btnZoomOut" title="Alejar (-)">−</button>
+        <button id="btnResetZoom" title="Zoom 100%">1:1</button>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR (LAYERS & PROPERTIES) -->
+    <aside class="cad-sidebar" id="sidebar">
+      
+      <!-- TABS -->
+      <div class="sidebar-tabs">
+        <button class="tab-btn active" data-tab="properties">Propiedades</button>
+        <button class="tab-btn" data-tab="layers">Capas (3)</button>
+        <button class="tab-btn" data-tab="desarrollo">Desarrollo</button>
+      </div>
+
+      <!-- TAB CONTENT: PROPERTIES -->
+      <div class="tab-content active" id="tabProperties">
+        
+        <div class="panel-section">
+          <div class="section-header">Trazo Activo</div>
+          
+          <div class="prop-row">
+            <label>Color</label>
+            <div class="color-palette" id="colorPalette">
+              <button class="color-chip active" data-color="#ffffff" style="background:#ffffff;" title="Blanco CAD"></button>
+              <button class="color-chip" data-color="#00e5ff" style="background:#00e5ff;" title="Cyan Eléctrico"></button>
+              <button class="color-chip" data-color="#ffe600" style="background:#ffe600;" title="Amarillo Cota"></button>
+              <button class="color-chip" data-color="#ff4d4d" style="background:#ff4d4d;" title="Rojo Advertencia"></button>
+              <button class="color-chip" data-color="#00e676" style="background:#00e676;" title="Verde Zinc"></button>
+              <button class="color-chip" data-color="#b0bec5" style="background:#b0bec5;" title="Gris Pliegue"></button>
+            </div>
+          </div>
+
+          <div class="prop-row">
+            <label for="strokeWidthSelect">Grosor Línea</label>
+            <select id="strokeWidthSelect" class="form-select">
+              <option value="1">1 px (Fina / Eje)</option>
+              <option value="2" selected>2 px (Estándar Chapa)</option>
+              <option value="3">3 px (Contorno Fuerte)</option>
+              <option value="5">5 px (Perfil Grueso)</option>
+            </select>
+          </div>
+
+          <div class="prop-row">
+            <label for="lineStyleSelect">Tipo de Línea</label>
+            <select id="lineStyleSelect" class="form-select">
+              <option value="solid" selected>Continua ────</option>
+              <option value="dashed">Segmentada (Doblez) - - -</option>
+              <option value="dotted">Punteada · · · ·</option>
+              <option value="dashdot">Trazo y Punto — · —</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-header">Texto y Cotas</div>
+          
+          <div class="prop-row">
+            <label for="fontSizeSelect">Tamaño de Fuente</label>
+            <select id="fontSizeSelect" class="form-select">
+              <option value="12">12 px (Pequeño)</option>
+              <option value="14" selected>14 px (Estándar)</option>
+              <option value="18">18 px (Mediano)</option>
+              <option value="24">24 px (Título / Grande)</option>
+            </select>
+          </div>
+
+          <div class="prop-row">
+            <label for="cotaUnitInput">Unidad Sugerida</label>
+            <select id="cotaUnitInput" class="form-select">
+              <option value="cm" selected>Centímetros (cm)</option>
+              <option value="mm">Milímetros (mm)</option>
+              <option value="m">Metros (m)</option>
+              <option value="none">Sin unidad (Número puro)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel-section" id="selectionSection">
+          <div class="section-header">Elemento Seleccionado</div>
+          <div id="selectionInfo" class="selection-empty">
+            Ningún elemento seleccionado.<br>Haga clic o arrastre un recuadro para seleccionar.
+          </div>
+          <div id="selectionDetails" class="selection-details hidden">
+            <div class="prop-row">
+              <label>Tipo:</label>
+              <span id="selType" class="badge-tag">Línea</span>
+            </div>
+            <div class="prop-row" id="selTextRow">
+              <label for="selTextInput">Texto/Valor:</label>
+              <input type="text" id="selTextInput" class="form-input">
+            </div>
+            <div class="prop-row">
+              <label for="selColorInput">Color:</label>
+              <input type="color" id="selColorInput" class="color-picker-input">
+            </div>
+            <div class="prop-row">
+              <label for="selWidthInput">Grosor:</label>
+              <select id="selWidthInput" class="form-select">
+                <option value="1">1 px</option>
+                <option value="2">2 px</option>
+                <option value="3">3 px</option>
+                <option value="5">5 px</option>
+              </select>
+            </div>
+            <div class="prop-row">
+              <label for="selLineStyleSelect">Estilo Trazo:</label>
+              <select id="selLineStyleSelect" class="form-select">
+                <option value="solid">Continua ────</option>
+                <option value="dashed">Segmentada (Oculta) - - -</option>
+                <option value="dotted">Punteada · · · ·</option>
+                <option value="dashdot">Trazo y Punto — · —</option>
+              </select>
+            </div>
+            <div class="prop-quick-buttons">
+              <button type="button" id="btnSelSolid" class="btn btn-secondary btn-sm" title="Convertir a línea continua (Atajo L)">── Continua (L)</button>
+              <button type="button" id="btnSelDashed" class="btn btn-secondary btn-sm" title="Convertir a línea segmentada / oculta (Atajo K)">- - Segmentada (K)</button>
+            </div>
+            <div class="prop-row">
+              <label for="selLayerSelect">Mover a capa:</label>
+              <select id="selLayerSelect" class="form-select">
+                <option value="drawing">1. Dibujo</option>
+                <option value="dimensions">2. Cotas</option>
+                <option value="notes">3. Notas</option>
+              </select>
+            </div>
+            <div class="btn-group-full">
+              <button id="btnSelDelete" class="btn btn-danger-outline">Eliminar</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB CONTENT: LAYERS -->
+      <div class="tab-content" id="tabLayers">
+        <div class="panel-section">
+          <div class="section-header">Control de Capas</div>
+          <p class="section-desc">Haga clic en el nombre de la capa para activarla. Nuevos trazos se asignan según la herramienta o la capa activa.</p>
+
+          <div class="layers-list" id="layersList">
+            
+            <!-- Layer 1: Dibujo -->
+            <div class="layer-item active" data-layer-id="drawing">
+              <div class="layer-color-bar" style="background: #38bdf8;"></div>
+              <div class="layer-info">
+                <span class="layer-name">1. DIBUJO (Geometría)</span>
+                <span class="layer-count" id="countDrawing">0 elementos</span>
+              </div>
+              <div class="layer-actions">
+                <button class="layer-action-btn layer-vis" title="Visibilidad (Ocultar/Mostrar)">
+                  <svg class="icon-eye-open" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <svg class="icon-eye-closed hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                </button>
+                <button class="layer-action-btn layer-lock" title="Bloqueo (Editar/Bloquear)">
+                  <svg class="icon-unlocked" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
+                  <svg class="icon-locked hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Layer 2: Cotas -->
+            <div class="layer-item" data-layer-id="dimensions">
+              <div class="layer-color-bar" style="background: #f59e0b;"></div>
+              <div class="layer-info">
+                <span class="layer-name">2. COTAS (Dimensiones)</span>
+                <span class="layer-count" id="countDimensions">0 elementos</span>
+              </div>
+              <div class="layer-actions">
+                <button class="layer-action-btn layer-vis" title="Visibilidad">
+                  <svg class="icon-eye-open" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <svg class="icon-eye-closed hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                </button>
+                <button class="layer-action-btn layer-lock" title="Bloqueo">
+                  <svg class="icon-unlocked" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
+                  <svg class="icon-locked hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Layer 3: Notas -->
+            <div class="layer-item" data-layer-id="notes">
+              <div class="layer-color-bar" style="background: #34d399;"></div>
+              <div class="layer-info">
+                <span class="layer-name">3. NOTAS / TEXTO</span>
+                <span class="layer-count" id="countNotes">0 elementos</span>
+              </div>
+              <div class="layer-actions">
+                <button class="layer-action-btn layer-vis" title="Visibilidad">
+                  <svg class="icon-eye-open" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <svg class="icon-eye-closed hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                </button>
+                <button class="layer-action-btn layer-lock" title="Bloqueo">
+                  <svg class="icon-unlocked" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
+                  <svg class="icon-locked hidden" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB CONTENT: DESARROLLO DE ZINC -->
+      <div class="tab-content" id="tabDesarrollo">
+        <div class="panel-section">
+          <div class="section-header">Cálculo de Chapa / Desarrollo</div>
+          <p class="section-desc">Suma del largo de los tramos o cotas numéricas para calcular el ancho de corte de la bobina de zinc.</p>
+          
+          <div class="calc-card">
+            <div class="calc-card-title">Desarrollo Total Estimado:</div>
+            <div class="calc-card-value" id="devTotalDisplay">0 cm</div>
+            <div class="calc-card-sub" id="devDetailsCount">0 tramos de perfil</div>
+          </div>
+
+          <div class="prop-row">
+            <label for="devLargoInput">Largo de Pieza (m):</label>
+            <input type="number" id="devLargoInput" class="form-input" value="3.0" step="0.5" min="0.1">
+          </div>
+
+          <div class="prop-row">
+            <label for="devEspesorSelect">Espesor Chapa:</label>
+            <select id="devEspesorSelect" class="form-select">
+              <option value="0.4">0.4 mm (Estándar 28)</option>
+              <option value="0.5" selected>0.5 mm (Recomendado 26)</option>
+              <option value="0.6">0.6 mm (Pesado 24)</option>
+              <option value="0.8">0.8 mm (Estructural)</option>
+            </select>
+          </div>
+
+          <button id="btnInsertDevNote" class="btn btn-secondary btn-block">
+            Insertar Nota de Desarrollo en Plano
+          </button>
+        </div>
+      </div>
+
+    </aside>
+  </main>
+
+  <!-- BOTTOM STATUS BAR -->
+  <footer class="cad-statusbar">
+    <div class="statusbar-left">
+      <div class="status-item">
+        <span class="status-label">Coords:</span>
+        <span class="status-value" id="cursorCoords">X: 0.0, Y: 0.0</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">Selección:</span>
+        <span class="status-value" id="statusSelection">0 elem.</span>
+      </div>
+    </div>
+
+    <div class="statusbar-center">
+      <!-- ASSIST TOGGLES -->
+      <button id="toggleGrid" class="status-toggle active" title="Mostrar Rejilla 1 cm / 10 cm (G) · Formato Plancha 100×300 cm">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+        <span>GRID 1/10</span>
+      </button>
+
+      <button id="toggleSnapGrid" class="status-toggle active" title="Ajuste a la Rejilla 1 cm (S)">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path></svg>
+        <span>SNAP 1</span>
+      </button>
+
+      <button id="toggleOrtho" class="status-toggle" title="Modo Ortogonal (O o Shift)">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 20 20 20 20 4"></polyline></svg>
+        <span>ORTO (O)</span>
+      </button>
+
+      <button id="toggleOsnap" class="status-toggle active" title="Imantación a Objetos / Osnap (F3)">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><line x1="10" y1="7" x2="17" y2="14"></line></svg>
+        <span>OSNAP (F3)</span>
+      </button>
+    </div>
+
+    <div class="statusbar-right">
+      <div class="status-item">
+        <span class="status-label">Capa Activa:</span>
+        <span class="status-value active-layer-tag" id="activeLayerTag">1. DIBUJO</span>
+      </div>
+      <button id="btnShortcutsHelp" class="status-link" title="Ver lista de atajos">Teclas rápidas [?]</button>
+    </div>
+  </footer>
+
+  <!-- MODAL: INGRESO DE MEDIDA DE COTA PERSONALIZADA (CRUCIAL) -->
+  <div class="cad-modal-backdrop" id="modalDimension">
+    <div class="cad-modal">
+      <div class="modal-header">
+        <div class="modal-title">Definir Medida de Cota</div>
+        <button class="modal-close" id="modalDimClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-hint">Los esquemas de hojalatería son croquis técnicos. Puede indicar la medida real de fabricación aunque el dibujo no esté a escala exacta.</p>
+        
+        <div class="modal-field">
+          <label for="dimValueInput">Medida o Texto a mostrar:</label>
+          <div class="input-with-addons">
+            <input type="text" id="dimValueInput" class="form-input text-lg" autofocus placeholder="ej. 15, 53 cm, 2.4 m">
+            <div class="quick-unit-buttons">
+              <button type="button" class="btn-chip" data-unit="cm">cm</button>
+              <button type="button" class="btn-chip" data-unit="mm">mm</button>
+              <button type="button" class="btn-chip" data-unit="m">m</button>
+              <button type="button" class="btn-chip" data-unit="mts">mts</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dim-calc-ref">
+          <span>Medida geométrica del trazo en pantalla:</span>
+          <strong id="dimGeomLength">0 px (~0 cm)</strong>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modalDimCancel">Cancelar</button>
+        <button class="btn btn-primary" id="modalDimConfirm">Aplicar Cota</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: INGRESO DE TEXTO / NOTA TÉCNICA -->
+  <div class="cad-modal-backdrop" id="modalText">
+    <div class="cad-modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTextTitle">Ingresar Nota Técnica</div>
+        <button class="modal-close" id="modalTextClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-field">
+          <label for="textValueInput">Texto descriptivo:</label>
+          <input type="text" id="textValueInput" class="form-input" placeholder="ej. Gotero 15 mm, Pestaña a 90°, Doblez interior">
+        </div>
+        <div class="quick-notes-chips">
+          <span class="chip-title">Notas comunes:</span>
+          <button class="btn-chip-note">Gotero 15 mm</button>
+          <button class="btn-chip-note">Pestaña 10 mm</button>
+          <button class="btn-chip-note">Doblado a 90°</button>
+          <button class="btn-chip-note">Doblado a 135°</button>
+          <button class="btn-chip-note">Traslapo 10 cm</button>
+          <button class="btn-chip-note">Tramos de 3.0 Mts</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modalTextCancel">Cancelar</button>
+        <button class="btn btn-primary" id="modalTextConfirm">Insertar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PRESETS / PERFILES ESTÁNDAR DE HOJALATERÍA -->
+  <div class="cad-modal-backdrop" id="modalPresets">
+    <div class="cad-modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title">Biblioteca de Perfiles de Hojalatería Típicos</div>
+        <button class="modal-close" id="modalPresetsClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-hint">Seleccione un perfil base para insertarlo inmediatamente en el lienzo con sus pliegues y cotas de ejemplo configurables:</p>
+        
+        <div class="presets-grid">
+          <!-- Preset 1: Canaleta Cuadrada -->
+          <div class="preset-card" data-preset="canaleta_cuadrada">
+            <div class="preset-preview">
+              <svg viewBox="0 0 100 80" class="preset-svg">
+                <path d="M 15 25 L 25 25 L 25 65 L 75 65 L 75 25 L 85 25" fill="none" stroke="#38bdf8" stroke-width="2.5"></path>
+                <path d="M 85 25 L 85 20" fill="none" stroke="#38bdf8" stroke-width="2"></path>
+              </svg>
+            </div>
+            <div class="preset-name">Canaleta Cuadrada / Americana</div>
+            <div class="preset-desc">Fondo 15cm, paredes 12cm con pestaña y goterón exterior.</div>
+          </div>
+
+          <!-- Preset 2: Caballete / Cumbrera -->
+          <div class="preset-card" data-preset="caballete_v">
+            <div class="preset-preview">
+              <svg viewBox="0 0 100 80" class="preset-svg">
+                <path d="M 15 65 L 25 60 L 50 30 L 75 60 L 85 65" fill="none" stroke="#38bdf8" stroke-width="2.5"></path>
+              </svg>
+            </div>
+            <div class="preset-name">Caballete en V (Cumbrera)</div>
+            <div class="preset-desc">Ángulo 120° con alas de 20cm y pestañas anti-retorno de agua.</div>
+          </div>
+
+          <!-- Preset 3: Esquinero / Remate L -->
+          <div class="preset-card" data-preset="esquinero_l">
+            <div class="preset-preview">
+              <svg viewBox="0 0 100 80" class="preset-svg">
+                <path d="M 20 20 L 25 20 L 25 65 L 75 65 L 75 60" fill="none" stroke="#38bdf8" stroke-width="2.5"></path>
+              </svg>
+            </div>
+            <div class="preset-name">Esquinero / Forro en L</div>
+            <div class="preset-desc">Alas de 10x10 cm o 15x15 cm con pestaña de rigidez doblada.</div>
+          </div>
+
+          <!-- Preset 4: Canaleta Moldurada Colonial -->
+          <div class="preset-card" data-preset="canaleta_moldurada">
+            <div class="preset-preview">
+              <svg viewBox="0 0 100 80" class="preset-svg">
+                <path d="M 15 25 L 25 25 L 25 65 L 60 65 Q 75 60 75 45 Q 75 30 85 25" fill="none" stroke="#38bdf8" stroke-width="2.5"></path>
+              </svg>
+            </div>
+            <div class="preset-name">Canaleta Moldurada Colonial</div>
+            <div class="preset-desc">Curva frontal pecho de paloma con pestaña de fijación.</div>
+          </div>
+
+          <!-- Preset 5: Goterón de Muro / Cortagotera -->
+          <div class="preset-card" data-preset="goteron_muro">
+            <div class="preset-preview">
+              <svg viewBox="0 0 100 80" class="preset-svg">
+                <path d="M 30 20 L 30 50 L 70 65 L 65 72" fill="none" stroke="#38bdf8" stroke-width="2.5"></path>
+              </svg>
+            </div>
+            <div class="preset-name">Goterón / Forro de Coronación</div>
+            <div class="preset-desc">Caída con quiebre de escurrimiento para evitar manchas en muro.</div>
+          </div>
+
+          <!-- Preset 6: Bajada de Agua Rectangular (Isometric) -->
+          <div class="preset-card" data-preset="bajada_tubo">
+            <div class="preset-preview">
+              <svg viewBox="0 0 100 80" class="preset-svg">
+                <rect x="25" y="25" width="50" height="35" rx="3" fill="none" stroke="#38bdf8" stroke-width="2.5"></rect>
+                <line x1="25" y1="40" x2="75" y2="40" stroke="#f59e0b" stroke-dasharray="3,3" stroke-width="1.5"></line>
+              </svg>
+            </div>
+            <div class="preset-name">Bajada de Agua Rectangular</div>
+            <div class="preset-desc">Sección 75x100 mm con costura lateral engrapada.</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modalPresetsCancel">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EXPORTAR IMAGEN / PRESUPUESTO -->
+  <div class="cad-modal-backdrop" id="modalExport">
+    <div class="cad-modal">
+      <div class="modal-header">
+        <div class="modal-title">Exportar Imagen para Presupuesto</div>
+        <button class="modal-close" id="modalExportClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="modal-field">
+          <label>Fondo de la Imagen:</label>
+          <div class="radio-cards">
+            <label class="radio-card active">
+              <input type="radio" name="exportBg" value="cad" checked>
+              <div class="radio-card-content">
+                <strong>Fondo Azul Blueprint CAD (Recomendado)</strong>
+                <span>Auténtico azul técnico de ingeniería con cuadrícula milimétrica sutil en el fondo.</span>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="exportBg" value="white">
+              <div class="radio-card-content">
+                <strong>Fondo Blanco Limpio para Presupuesto</strong>
+                <span>Ideal para imprimir en papel o anexar como cotización por WhatsApp.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-field">
+          <label class="checkbox-label">
+            <input type="checkbox" id="exportIncludeGrid" checked>
+            <span>Incluir Cuadrícula Milimétrica CAD Sutil en el Fondo</span>
+          </label>
+        </div>
+
+        <div class="modal-field">
+          <label class="checkbox-label">
+            <input type="checkbox" id="exportIncludeHeader" checked>
+            <span>Incluir Membrete Técnico de Taller (Nombre de Proyecto, Fecha y Taller Los Cerezos)</span>
+          </label>
+        </div>
+
+        <div class="modal-field">
+          <label class="checkbox-label">
+            <input type="checkbox" id="exportCrop" checked>
+            <span>Ajustar encuadre automático con márgenes amplios (sin recortar cotas ni notas)</span>
+          </label>
+        </div>
+
+        <div class="export-preview-container">
+          <div class="export-preview-label">Vista Previa:</div>
+          <div class="export-preview-box">
+            <img id="exportImgPreview" alt="Vista previa de exportación">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modalExportCancel">Cancelar</button>
+        <button class="btn btn-primary" id="btnDownloadExport">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Descargar PNG Alta Resolución</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: AYUDA Y ATAJOS -->
+  <div class="cad-modal-backdrop" id="modalShortcuts">
+    <div class="cad-modal">
+      <div class="modal-header">
+        <div class="modal-title">Atajos de Teclado y Controles</div>
+        <button class="modal-close" id="modalShortcutsClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="shortcuts-grid">
+          <div class="shortcut-item"><kbd>V</kbd><span>Herramienta Selección / Mover</span></div>
+          <div class="shortcut-item"><kbd>L</kbd><span>Línea continua / Convertir selección a continua</span></div>
+          <div class="shortcut-item"><kbd>K</kbd><span>Línea segmentada / Convertir selección a oculta</span></div>
+          <div class="shortcut-item"><kbd>C</kbd><span>Círculo / Tubo</span></div>
+          <div class="shortcut-item"><kbd>A</kbd><span>Arco de curvatura</span></div>
+          <div class="shortcut-item"><kbd>D</kbd><span>Cota de medida personalizada</span></div>
+          <div class="shortcut-item"><kbd>T</kbd><span>Texto de especificación</span></div>
+          <div class="shortcut-item"><kbd>F</kbd><span>Flecha de nota técnica</span></div>
+          <div class="shortcut-item"><kbd>X</kbd><span>Dividir / Cortar segmento o arco en cruces</span></div>
+          <div class="shortcut-item"><kbd>G</kbd><span>Alternar Rejilla (Grid)</span></div>
+          <div class="shortcut-item"><kbd>S</kbd><span>Alternar Snap a la Rejilla</span></div>
+          <div class="shortcut-item"><kbd>O</kbd> o <kbd>Shift</kbd><span>Modo Ortogonal (0°, 90°)</span></div>
+          <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>Z</kbd><span>Deshacer</span></div>
+          <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>Y</kbd><span>Rehacer</span></div>
+          <div class="shortcut-item"><kbd>Ctrl</kbd> + <kbd>D</kbd><span>Duplicar elemento</span></div>
+          <div class="shortcut-item"><kbd>Supr</kbd> / <kbd>Backspace</kbd><span>Eliminar elemento</span></div>
+          <div class="shortcut-item"><kbd>Espacio</kbd> + Arrastrar<span>Mover lienzo (Pan)</span></div>
+          <div class="shortcut-item"><kbd>Rueda Ratón</kbd><span>Zoom hacia el puntero</span></div>
+          <div class="shortcut-item"><kbd>Doble Clic</kbd><span>Terminar línea o editar cota</span></div>
+          <div class="shortcut-item"><kbd>Esc</kbd><span>Cancelar acción / Deseleccionar</span></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="modalShortcutsConfirm">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="cad-data.js"></script>
+  <script src="cad-auth.js"></script>
+</body>
+</html>
