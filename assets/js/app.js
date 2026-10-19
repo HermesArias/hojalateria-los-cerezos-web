@@ -429,8 +429,9 @@ function updateHoodBlueprint() {
 function initCustomQuoteModalOrLinks() {
   document.querySelectorAll("[data-quote-product]").forEach(btn => {
     btn.addEventListener("click", () => {
+      const product = btn.getAttribute("data-quote-product") || "un producto a medida";
       const defaultMsg = encodeURIComponent(
-        "Hola Hojalatería Los Cerezos, necesito cotizar la fabricación de un producto a medida. Aquí les detallo lo que necesito:\n\n"
+        `Hola Hojalatería Los Cerezos, necesito cotizar la fabricación de ${product}. Aquí les detallo las medidas y lo que necesito:\n\n`
       );
       // Seguridad: mitigación estricta contra Reverse Tabnabbing
       window.open(`https://wa.me/${WORKSHOP_PHONE}?text=${defaultMsg}`, "_blank", "noopener,noreferrer");

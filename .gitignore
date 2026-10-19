@@ -14,7 +14,3 @@ $RECYCLE.BIN/
 # Temporary & Log files
 *.log
 
-# Desarrollo privado CAD
-cad/app.dev.js
-build-encrypt.js
-
